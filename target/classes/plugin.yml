@@ -1,0 +1,10 @@
+main: com.seawars.Seawars
+name: Seawars
+version: 1.0
+commands:
+  set:
+    description: Set Area
+    usage: /set
+  help:
+    description: Help
+    usage: /help
