@@ -23,18 +23,20 @@ public class onJoin implements Listener {
         plugin = instance;
     }
 
+    //TODO fix player joining
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         player.sendMessage(ChatColor.RED + "Waiting for players!");
         players = +1;
-        //player.sendMessage(String.valueOf(players));
+        player.sendMessage(String.valueOf(players));
 
         if(players == 1) {
             countdown(player);
         }
     }
 
+    //TODO Fix Countdown not restarting!
     public void countdown(Player player) {
             Bukkit.broadcastMessage(ChatColor.YELLOW + "Game starting in " + count + " seconds..");
             new BukkitRunnable() {
