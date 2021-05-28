@@ -39,24 +39,14 @@ public class setRegion implements CommandExecutor {
                             loc1 = player.getLocation();
                             plugin.getConfig().set("region1", loc1);
                             player.sendMessage(ChatColor.GREEN + "Location 1 set at: " + loc1.getBlockX() + "," + loc1.getBlockY() + "," + loc1.getBlockZ());
+                            reloadConfig();
                         }
                         if (args[0].equalsIgnoreCase("2")) {
                             loc2 = player.getLocation();
                             plugin.getConfig().set("region2", loc2);
                             player.sendMessage(ChatColor.GREEN + "Location 2 set at: " + loc2.getBlockX() + "," + loc2.getBlockY() + "," + loc2.getBlockZ());
+                            reloadConfig();
                         }
-                        if (args[0].equalsIgnoreCase("filltest")) {
-                            // Save default config into plugins/<your-plugin>/config.yml if not exists
-                            plugin.saveDefaultConfig();
-                            // Get config from config file
-                            plugin.config = plugin.getConfig();
-                            // Put default values into it (from your jar's config.yml file)
-                            plugin.config.options().copyDefaults(true);
-                            // Add missing / new parameters into plugins/<your-plugin>/config.yml
-                            plugin.saveConfig();
-
-                        }
-
                     } else {
                         player.sendMessage(ChatColor.RED + "You do not have permission");
                         return true;
@@ -99,5 +89,15 @@ public class setRegion implements CommandExecutor {
                 }
             }
         }
+    }
+    public void reloadConfig() {
+        // Save default config into plugins/<your-plugin>/config.yml if not exists
+        plugin.saveDefaultConfig();
+        // Get config from config file
+        plugin.config = plugin.getConfig();
+        // Put default values into it (from your jar's config.yml file)
+        plugin.config.options().copyDefaults(true);
+        // Add missing / new parameters into plugins/<your-plugin>/config.yml
+        plugin.saveConfig();
     }
 }
