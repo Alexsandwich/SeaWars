@@ -5,3 +5,6 @@ commands:
   set:
     description: Set Area
     usage: /set
+  help:
+    description: Help
+    usage: /help
