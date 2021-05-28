@@ -24,7 +24,7 @@ public class Seawars extends JavaPlugin {
         Bukkit.getLogger().info("Seawars has been enabled!");
         this.getCommand("set").setExecutor(new setRegion(this));
         this.getCommand("help").setExecutor(new helpCommand());
-        Bukkit.getPluginManager().registerEvents(new onJoin(), this);
+        Bukkit.getPluginManager().registerEvents(new onJoin(this), this);
         Bukkit.getPluginManager().registerEvents(new onLeave(), this);
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
