@@ -2,22 +2,37 @@ package com.seawars;
 
 import com.seawars.commands.helpCommand;
 import com.seawars.commands.setRegion;
+import com.seawars.events.onJoin;
+import com.seawars.events.onLeave;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Seawars extends JavaPlugin {
 
+    private static Seawars instance;
+
+    public FileConfiguration config;
+
+    public static Seawars getInstance() {
+        return instance;
+    }
 
 
     @Override
     public void onEnable() {
         Bukkit.getLogger().info("Seawars has been enabled!");
-        //this.getCommand("set").setExecutor(new setRegion());
+        this.getCommand("set").setExecutor(new setRegion(this));
         this.getCommand("help").setExecutor(new helpCommand());
+        Bukkit.getPluginManager().registerEvents(new onJoin(), this);
+        Bukkit.getPluginManager().registerEvents(new onLeave(), this);
+        this.getConfig().options().copyDefaults(true);
+        this.saveConfig();
     }
 
     @Override
     public void onDisable() {
         Bukkit.getLogger().info("Seawars has been disabled!");
+        this.saveConfig();
     }
 }
