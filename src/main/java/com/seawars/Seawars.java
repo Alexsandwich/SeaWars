@@ -9,9 +9,15 @@ import com.seawars.commands.Commands;
 import com.seawars.files.DataManager;
 import com.seawars.gui.GUI;
 import com.seawars.events.Listeners;
+import com.seawars.gui.TEAMS;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.NameTagVisibility;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.scoreboard.Team;
 
 public class Seawars extends JavaPlugin {
 
@@ -19,6 +25,7 @@ public class Seawars extends JavaPlugin {
 
     public FileConfiguration config;
     public DataManager data;
+
 
     public static Seawars getInstance() {
         return instance;
@@ -37,10 +44,13 @@ public class Seawars extends JavaPlugin {
         this.getCommand("test").setExecutor(new Commands(this));
         Bukkit.getPluginManager().registerEvents(new Listeners(this),this);
         this.getCommand("balance").setExecutor(new getBalance(this));
+        Bukkit.getPluginManager().registerEvents(new TEAMS(this),this);
 
         this.data = new DataManager(this);
 
         GUI.initialize();
+
+
     }
 
     @Override

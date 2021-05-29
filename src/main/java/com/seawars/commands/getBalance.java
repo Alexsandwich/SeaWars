@@ -7,10 +7,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class getBalance implements CommandExecutor {
+
     private Seawars plugin;
     public getBalance(Seawars plugin) {
         this.plugin = plugin;
     }
+
     int balance = 0;
 
     @Override
