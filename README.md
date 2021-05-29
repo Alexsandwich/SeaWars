@@ -9,7 +9,7 @@ Sea wars is a gamemode thought of by Pavel (DrunkCactus), based off a garry's mo
 * configurable settings
 
 
-##TODO
+## TODO
 * Continue to work on development of the water rising system
 * Make a system that detects player blocks connected to the boat center block
 * Make a system to raise blocks when the water raises
