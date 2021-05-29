@@ -1,5 +1,6 @@
 package com.seawars.gui;
 
+import com.seawars.Seawars;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,9 +9,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 public class Listeners implements Listener {
 
-    private guiMain plugin;
+    private Seawars plugin;
 
-    public Listeners(guiMain plugin) {
+    public Listeners(Seawars plugin) {
         this.plugin = plugin;
         Bukkit.getPluginManager().registerEvents(this, plugin);
 

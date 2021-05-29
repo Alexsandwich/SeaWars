@@ -4,6 +4,9 @@ import com.seawars.commands.helpCommand;
 import com.seawars.commands.setRegion;
 import com.seawars.events.onJoin;
 import com.seawars.events.onLeave;
+import com.seawars.gui.Commands;
+import com.seawars.gui.GUI;
+import com.seawars.gui.Listeners;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,6 +31,10 @@ public class Seawars extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new onLeave(), this);
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
+        this.getCommand("test").setExecutor(new Commands(this));
+        Bukkit.getPluginManager().registerEvents(new Listeners(this),this);
+
+        GUI.initialize();
     }
 
     @Override

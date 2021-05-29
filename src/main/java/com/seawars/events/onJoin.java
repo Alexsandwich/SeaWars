@@ -10,9 +10,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Collection;
+
 public class onJoin implements Listener {
 
-    public static int players = 0;
+    Collection<? extends Player> players = Bukkit.getOnlinePlayers();
 
     static Seawars plugin;
 
@@ -28,10 +30,10 @@ public class onJoin implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         player.sendMessage(ChatColor.RED + "Waiting for players!");
-        players = +1;
+
         player.sendMessage(String.valueOf(players));
 
-        if(players == 1) {
+        if(players.toArray().length == 2) {
             countdown(player);
         }
     }

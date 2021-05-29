@@ -1,4 +1,4 @@
-package me.drunkcactus;
+package com.seawars.gui;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;

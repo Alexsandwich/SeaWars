@@ -8,6 +8,5 @@ public class onLeave implements Listener {
 
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
-        onJoin.players = -1;
     }
 }
