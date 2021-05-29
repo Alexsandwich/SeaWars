@@ -23,6 +23,6 @@ public class Commands implements CommandExecutor {
         if (p.hasPermission("User")){
             p.openInventory(GUI.GUI(p));
         }
-        return false;
+        return true;
     }
 }

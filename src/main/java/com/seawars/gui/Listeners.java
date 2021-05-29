@@ -13,7 +13,6 @@ public class Listeners implements Listener {
 
     public Listeners(Seawars plugin) {
         this.plugin = plugin;
-        Bukkit.getPluginManager().registerEvents(this, plugin);
 
     }
     @EventHandler
