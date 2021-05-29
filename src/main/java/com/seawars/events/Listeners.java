@@ -2,6 +2,7 @@ package com.seawars.events;
 
 import com.seawars.Seawars;
 import com.seawars.gui.GUI;
+import com.seawars.gui.teamGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -26,6 +27,20 @@ public class Listeners implements Listener {
             }
             if (title.equals(GUI.inventory_name)){
                 GUI.clicked((Player) e.getWhoClicked(), e.getSlot(), e.getCurrentItem(), e.getInventory());
+            }
+        }
+    }
+
+    @EventHandler
+    public void onClick2(InventoryClickEvent e){
+        String title = e.getView().getTitle();
+        if (title.equals(teamGUI.inventory_name)){
+            e.setCancelled(true);
+            if (e.getCurrentItem()== null) {
+                return;
+            }
+            if (title.equals(teamGUI.inventory_name)){
+                teamGUI.clicked((Player) e.getWhoClicked(), e.getSlot(), e.getCurrentItem(), e.getInventory());
             }
         }
     }

@@ -1,31 +1,41 @@
 package com.seawars.gui;
 
+import com.seawars.Seawars;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 
-public class GUI {
+public class GUI implements Listener {
 
     public static Inventory inv;
     public static String inventory_name;
     public static int inv_rows = 4 * 9;
 
-    public static void initialize(){
+    private static Seawars plugin;
+
+    public GUI(Seawars plugin) {
+        this.plugin = plugin;
+    }
+
+    public static void initialize() {
         inventory_name = Utils.chat("&2&4 GUI");
         inv = Bukkit.createInventory(null, inv_rows);
 
     }
 
-    public static Inventory GUI (Player p){
+    public static Inventory GUI(Player p) {
         Inventory toReturn = Bukkit.createInventory(null, inv_rows, inventory_name);
 
         //  Create item here            (inv, item, ammount, slot, displayname,)
-        Utils.createItem(inv,"wood_spade",1,1, "Shovel","BRUH");
-        Utils.createItem(inv,"iron_sword",1,2, "Iron Sword","KILL");
-        Utils.createItemByte(inv,"wood",0,4,3,"Oak Planks", "WOOD");
+        Utils.createItem(inv, "wood_spade", 1, 1, "Shovel", "BRUH");
+        Utils.createItem(inv, "iron_sword", 1, 2, "Iron Sword", "KILL");
+        Utils.createItemByte(inv, "wood", 0, 4, 3, "Oak Planks", "WOOD");
 
         //utils.createitemByte
 
@@ -34,11 +44,12 @@ public class GUI {
 
     }
 
-    public static void clicked(Player p, int slot, ItemStack clicked, Inventory inv){
+
+
+    public static void clicked(Player p, int slot, ItemStack clicked, Inventory inv) {
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Shovel"))) {
             ItemStack shovel = new ItemStack(Material.WOODEN_SHOVEL);
             p.getInventory().addItem(shovel);
-
             p.sendMessage(Utils.chat(" &8[&6*&8] &6&1You bought some drip "));
         }
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Iron Sword"))) {
@@ -59,6 +70,7 @@ public class GUI {
 
 
     }
+
 
 
 

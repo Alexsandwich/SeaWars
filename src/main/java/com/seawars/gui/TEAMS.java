@@ -14,6 +14,14 @@ import org.bukkit.scoreboard.*;
 
 public class TEAMS implements Listener {
 
+    public static ScoreboardManager manager = Bukkit.getScoreboardManager();
+    public static Scoreboard board = manager.getNewScoreboard();
+
+    public static Team red = board.registerNewTeam("Red");
+    public static Team blue = board.registerNewTeam("Blue");
+    public static Team yellow = board.registerNewTeam("Yellow");
+    public static Team green = board.registerNewTeam("Green");
+
     private Seawars plugin;
 
 
@@ -36,25 +44,20 @@ public class TEAMS implements Listener {
 
     @SuppressWarnings("deprecation")
     public void createScoreboard(Player player){
-        ScoreboardManager manager = Bukkit.getScoreboardManager();
-        Scoreboard board = manager.getNewScoreboard();
         Objective objective = board.registerNewObjective("Stats", "dummy");
         objective.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "--=Sea Wars=--");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
-        Team red = board.registerNewTeam("Red");
-        Team blue = board.registerNewTeam("Blue");
-        Team yellow = board.registerNewTeam("Yellow");
 
         red.setPrefix(ChatColor.RED + "[RED] " + ChatColor.WHITE);
         blue.setPrefix(ChatColor.BLUE + "[BLUE] " + ChatColor.WHITE);
         yellow.setPrefix(ChatColor.YELLOW + "[YELLOW] " + ChatColor.WHITE);
+        green.setPrefix(ChatColor.GREEN + "[GREEN] " + ChatColor.WHITE);
 
         red.setAllowFriendlyFire(false);
         red.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
         red.setCanSeeFriendlyInvisibles(false);
 
-        red.addPlayer(player);
         //onlinePlayers
         Score score = objective.getScore("Players:");
         score.setScore(Bukkit.getOnlinePlayers().size());

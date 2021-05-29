@@ -1,6 +1,7 @@
 package com.seawars.commands;
 
 import com.seawars.Seawars;
+import com.seawars.gui.teamGUI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,7 +14,7 @@ public class getBalance implements CommandExecutor {
         this.plugin = plugin;
     }
 
-    int balance = 0;
+    public int balance = 0;
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
