@@ -8,3 +8,6 @@ commands:
   help:
     description: Help
     usage: /help
+  test:
+    description: test
+    usage: /test
