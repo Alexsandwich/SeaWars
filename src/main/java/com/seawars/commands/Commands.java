@@ -1,6 +1,7 @@
-package com.seawars.gui;
+package com.seawars.commands;
 
 import com.seawars.Seawars;
+import com.seawars.gui.GUI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
