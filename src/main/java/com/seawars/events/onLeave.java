@@ -6,6 +6,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class onLeave implements Listener {
 
+    //TODO make countdown stop if player leaves
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
     }

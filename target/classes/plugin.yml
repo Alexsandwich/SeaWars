@@ -11,6 +11,6 @@ commands:
   test:
     description: test
     usage: /test
-  test:
+  balance:
     description: test
-    usage: /test
+    usage: /balance

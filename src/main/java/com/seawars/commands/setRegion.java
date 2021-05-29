@@ -8,7 +8,6 @@ import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -44,6 +43,7 @@ public class setRegion implements CommandExecutor {
                         if (args[0].equalsIgnoreCase("2")) {
                             loc2 = player.getLocation();
                             plugin.getConfig().set("region2", loc2);
+                            plugin.saveConfig();
                             player.sendMessage(ChatColor.GREEN + "Location 2 set at: " + loc2.getBlockX() + "," + loc2.getBlockY() + "," + loc2.getBlockZ());
                             reloadConfig();
                         }
@@ -59,21 +59,15 @@ public class setRegion implements CommandExecutor {
     public static void startGame(Player player){
         List<Block> blocks = new ArrayList<>();
 
-        //TODO work on getting region data from config.yml
+        Location location1 = (Location) plugin.getConfig().get("region1");
+        Location location2 = (Location) plugin.getConfig().get("region2");
 
-        //int topBlockX = (loc1.getBlockX() < loc2.getBlockX() ? loc2.getBlockX() : loc1.getBlockX());
-        int topBlockX = (plugin.getConfig().getInt("region1.x") < plugin.getConfig().getInt("region2.x") ? plugin.getConfig().getInt("region2.x") : plugin.getConfig().getInt("region1.x"));
-        //int bottomBlockX = (loc1.getBlockX() > loc2.getBlockX() ? loc2.getBlockX() : loc1.getBlockX());
-        int bottomBlockX = (plugin.getConfig().getInt("region1.x") > plugin.getConfig().getInt("region2.x") ? plugin.getConfig().getInt("region2.x") : plugin.getConfig().getInt("region1.x"));
-        //int topBlockY = (loc1.getBlockY() < loc2.getBlockY() ? loc2.getBlockY() : loc1.getBlockY());
-        int topBlockY = (plugin.getConfig().getInt("region1.y") < plugin.getConfig().getInt("region2.y") ? plugin.getConfig().getInt("region2.y") : plugin.getConfig().getInt("region1.y"));
-        //int bottomBlockY = (loc1.getBlockY() > loc2.getBlockY() ? loc2.getBlockY() : loc1.getBlockY());
-        int bottomBlockY = (plugin.getConfig().getInt("region1.y") > plugin.getConfig().getInt("region2.y") ? plugin.getConfig().getInt("region2.y") : plugin.getConfig().getInt("region1.y"));
-
-        //int topBlockZ = (loc1.getBlockZ() < loc2.getBlockZ() ? loc2.getBlockZ() : loc1.getBlockZ());
-        int topBlockZ = (plugin.getConfig().getInt("region1.z") < plugin.getConfig().getInt("region2.z") ? plugin.getConfig().getInt("region2.z") : plugin.getConfig().getInt("region1.z"));
-        //int bottomBlockZ = (loc1.getBlockZ() > loc2.getBlockZ() ? loc2.getBlockZ() : loc1.getBlockZ());
-        int bottomBlockZ = (plugin.getConfig().getInt("region1.z") > plugin.getConfig().getInt("region2.z") ? plugin.getConfig().getInt("region2.z") : plugin.getConfig().getInt("region1.z"));
+        int topBlockX = (location1.getBlockX() < location2.getBlockX() ? location2.getBlockX() : location1.getBlockX());
+        int bottomBlockX = (location1.getBlockX() > location2.getBlockX() ? location2.getBlockX() : location1.getBlockX());
+        int topBlockY = (location1.getBlockY() < location2.getBlockY() ? location2.getBlockY() : location1.getBlockY());
+        int bottomBlockY = (location1.getBlockY() > location2.getBlockY() ? location2.getBlockY() : location1.getBlockY());
+        int topBlockZ = (location1.getBlockZ() < location2.getBlockZ() ? location2.getBlockZ() : location1.getBlockZ());
+        int bottomBlockZ = (location1.getBlockZ() > location2.getBlockZ() ? location2.getBlockZ() : location1.getBlockZ());
 
         for(int x = bottomBlockX; x <= topBlockX; x++)
         {
@@ -82,7 +76,6 @@ public class setRegion implements CommandExecutor {
                 for(int y = bottomBlockY; y <= topBlockY; y++)
                 {
                     Block block = player.getWorld().getBlockAt(x, y, z);
-                    player.sendMessage(String.valueOf(x + "" + y +"" + ""+ z));
 
                     blocks.add(block);
                     block.setType(Material.WATER);
@@ -91,13 +84,9 @@ public class setRegion implements CommandExecutor {
         }
     }
     public void reloadConfig() {
-        // Save default config into plugins/<your-plugin>/config.yml if not exists
         plugin.saveDefaultConfig();
-        // Get config from config file
         plugin.config = plugin.getConfig();
-        // Put default values into it (from your jar's config.yml file)
         plugin.config.options().copyDefaults(true);
-        // Add missing / new parameters into plugins/<your-plugin>/config.yml
         plugin.saveConfig();
     }
 }

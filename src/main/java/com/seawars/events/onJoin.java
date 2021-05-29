@@ -25,13 +25,11 @@ public class onJoin implements Listener {
         plugin = instance;
     }
 
-    //TODO fix player joining
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         player.sendMessage(ChatColor.RED + "Waiting for players!");
 
-        player.sendMessage(String.valueOf(players));
 
         if(players.toArray().length == 2) {
             countdown(player);
