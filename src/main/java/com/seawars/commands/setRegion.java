@@ -59,8 +59,6 @@ public class setRegion implements CommandExecutor {
     public static void startGame(Player player){
         List<Block> blocks = new ArrayList<>();
 
-        //TODO work on getting region data from config.yml
-
         Location location1 = (Location) plugin.getConfig().get("region1");
         Location location2 = (Location) plugin.getConfig().get("region2");
 
