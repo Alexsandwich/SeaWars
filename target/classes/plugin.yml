@@ -11,3 +11,6 @@ commands:
   test:
     description: test
     usage: /test
+  test:
+    description: test
+    usage: /test
