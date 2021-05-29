@@ -56,7 +56,14 @@ public class MySQL {
         return con;
     }
 
-    //Example of storing player data into database
+    /***
+     *
+     * @param uuid stores the player uuid, connect their uuid to account
+     * @param name player name
+     * @param pkills amount of kills a player has
+     * @throws SQLException Error message
+     */
+
     public static void storePlayer(UUID uuid, String name, int pkills) throws SQLException {
         //PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT IGNORE INTO Players (Name,UUID,Kills) VALUES (?,?,?)");
         //ps.setString(1, name);
