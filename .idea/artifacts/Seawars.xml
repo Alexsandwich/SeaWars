@@ -5,6 +5,7 @@
       <element id="module-output" name="SeaWars" />
       <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
       <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/config.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/data.yml" />
     </root>
   </artifact>
 </component>

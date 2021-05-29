@@ -1,10 +1,12 @@
 package com.seawars;
 
+import com.seawars.commands.getBalance;
 import com.seawars.commands.helpCommand;
 import com.seawars.commands.setRegion;
 import com.seawars.events.onJoin;
 import com.seawars.events.onLeave;
 import com.seawars.commands.Commands;
+import com.seawars.files.DataManager;
 import com.seawars.gui.GUI;
 import com.seawars.events.Listeners;
 import org.bukkit.Bukkit;
@@ -16,6 +18,7 @@ public class Seawars extends JavaPlugin {
     private static Seawars instance;
 
     public FileConfiguration config;
+    public DataManager data;
 
     public static Seawars getInstance() {
         return instance;
@@ -33,6 +36,9 @@ public class Seawars extends JavaPlugin {
         this.saveConfig();
         this.getCommand("test").setExecutor(new Commands(this));
         Bukkit.getPluginManager().registerEvents(new Listeners(this),this);
+        this.getCommand("balance").setExecutor(new getBalance(this));
+
+        this.data = new DataManager(this);
 
         GUI.initialize();
     }
