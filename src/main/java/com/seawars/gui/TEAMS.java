@@ -12,12 +12,9 @@ import org.bukkit.scoreboard.*;
 
 
 
-public class TEAMS {
 
 
-
-
-    public class playerJoin implements Listener {
+public class TEAMS implements Listener {
 
         @EventHandler
         public void onPlayerJoin(PlayerJoinEvent e) {
@@ -64,5 +61,5 @@ public class TEAMS {
         }
 
     }
-}
+
 
