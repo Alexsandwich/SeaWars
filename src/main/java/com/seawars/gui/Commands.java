@@ -11,10 +11,6 @@ public class Commands implements CommandExecutor {
     private Seawars plugin;
     public Commands(Seawars plugin) {
         this.plugin = plugin;
-
-        plugin.getCommand("test").setExecutor(this);
-
-
     }
 
     @Override
