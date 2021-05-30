@@ -20,6 +20,7 @@ public class onJoin implements Listener {
     static Seawars plugin;
 
     static int count = 20;
+    static int gameCount = 90;
 
     static String prefix = plugin.prefix;
 
@@ -48,16 +49,17 @@ public class onJoin implements Listener {
                     if (count == 0) {
                         // Start game method
                         Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Teleporting players to arena");
-                        setRegion.startGame(player);
+                        //setRegion.startGame(player);
                         for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
 
                             String name = onlinePlayer.getName();
                             teleport(onlinePlayer);
                         }
+                        gameStart(player);
                         cancel(); // Cancels the timer
                     } else {
                         count--;
-                        Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Game starting in " + count + " seconds..");
+                        Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Teleporting players in " + count + " seconds..");
                     }
                 }
             }.runTaskTimer(Bukkit.getServer().getPluginManager().getPlugin("Seawars"), 20L, 20L);
@@ -77,4 +79,24 @@ public class onJoin implements Listener {
                 player.teleport(plugin.getConfig().getLocation("blue"));
             }
         }
+
+    public static void gameStart(Player player) {
+        Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Water Rises in " + gameCount + " seconds..");
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (gameCount == 0) {
+                    // Start game method
+                    Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Water has risen! Game on!");
+                    setRegion.startGame(player);
+                    cancel(); // Cancels the timer
+                } else {
+                    gameCount--;
+                    if (gameCount <= 10) {
+                        Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Water Rising in " + gameCount + " seconds..");
+                    }
+                }
+            }
+        }.runTaskTimer(Bukkit.getServer().getPluginManager().getPlugin("Seawars"), 20L, 20L);
+    }
 }
