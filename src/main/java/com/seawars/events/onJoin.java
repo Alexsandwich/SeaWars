@@ -2,6 +2,7 @@ package com.seawars.events;
 
 import com.seawars.Seawars;
 import com.seawars.commands.setRegion;
+import com.seawars.util.teamSystem;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -26,6 +27,7 @@ public class onJoin implements Listener {
         plugin = instance;
     }
 
+
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
@@ -47,6 +49,11 @@ public class onJoin implements Listener {
                         // Start game method
                         Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Teleporting players to arena");
                         setRegion.startGame(player);
+                        for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+
+                            String name = onlinePlayer.getName();
+                            teleport(onlinePlayer);
+                        }
                         cancel(); // Cancels the timer
                     } else {
                         count--;
@@ -56,4 +63,18 @@ public class onJoin implements Listener {
             }.runTaskTimer(Bukkit.getServer().getPluginManager().getPlugin("Seawars"), 20L, 20L);
         }
 
+        public static void teleport(Player player) {
+            if(teamSystem.red.hasPlayer(player)) {
+                player.teleport(plugin.getConfig().getLocation("red"));
+            }
+            if(teamSystem.yellow.hasPlayer(player)) {
+                player.teleport(plugin.getConfig().getLocation("yellow"));
+            }
+            if(teamSystem.green.hasPlayer(player)) {
+                player.teleport(plugin.getConfig().getLocation("green"));
+            }
+            if(teamSystem.blue.hasPlayer(player)) {
+                player.teleport(plugin.getConfig().getLocation("blue"));
+            }
+        }
 }

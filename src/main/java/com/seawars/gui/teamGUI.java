@@ -1,7 +1,6 @@
 package com.seawars.gui;
 
 import com.seawars.Seawars;
-import com.seawars.util.Utils;
 import com.seawars.util.teamSystem;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -44,8 +43,6 @@ public class teamGUI implements Listener {
         return toReturn;
 
     }
-
-
 
     public static void clicked(Player p, int slot, ItemStack clicked, Inventory inv) {
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Red Team"))) {

@@ -1,7 +1,6 @@
 package com.seawars.gui;
 
 import com.seawars.Seawars;
-import com.seawars.util.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

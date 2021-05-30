@@ -44,7 +44,7 @@ public class teamSystem implements Listener {
 
     @SuppressWarnings("deprecation")
     public void createScoreboard(Player player){
-        Objective objective = board.registerNewObjective("Stats", "dummy");
+        Objective objective = board.registerNewObjective("teams!", "dummy");
         objective.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "--=Sea Wars=--");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 

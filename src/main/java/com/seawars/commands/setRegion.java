@@ -17,6 +17,10 @@ public class setRegion implements CommandExecutor {
 
     public Location loc1;
     public Location loc2;
+    public Location red;
+    public Location yellow;
+    public Location green;
+    public Location blue;
 
     static Seawars plugin;
 
@@ -47,6 +51,34 @@ public class setRegion implements CommandExecutor {
                             plugin.getConfig().set("region2", loc2);
                             plugin.saveConfig();
                             player.sendMessage(prefix + ChatColor.GREEN + "Location 2 set at: " + loc2.getBlockX() + "," + loc2.getBlockY() + "," + loc2.getBlockZ());
+                            reloadConfig();
+                        }
+                        if (args[0].equalsIgnoreCase("red")) {
+                            red = player.getLocation();
+                            plugin.getConfig().set("red", red);
+                            plugin.saveConfig();
+                            player.sendMessage(prefix + ChatColor.GREEN + "Location red set at: " + red.getBlockX() + "," + red.getBlockY() + "," + red.getBlockZ());
+                            reloadConfig();
+                        }
+                        if (args[0].equalsIgnoreCase("blue")) {
+                            blue = player.getLocation();
+                            plugin.getConfig().set("blue", blue);
+                            plugin.saveConfig();
+                            player.sendMessage(prefix + ChatColor.GREEN + "Location blue set at: " + blue.getBlockX() + "," + blue.getBlockY() + "," + blue.getBlockZ());
+                            reloadConfig();
+                        }
+                        if (args[0].equalsIgnoreCase("yellow")) {
+                            yellow = player.getLocation();
+                            plugin.getConfig().set("yellow", yellow);
+                            plugin.saveConfig();
+                            player.sendMessage(prefix + ChatColor.GREEN + "Location yellow set at: " + yellow.getBlockX() + "," + yellow.getBlockY() + "," + yellow.getBlockZ());
+                            reloadConfig();
+                        }
+                        if (args[0].equalsIgnoreCase("green")) {
+                            green = player.getLocation();
+                            plugin.getConfig().set("green", green);
+                            plugin.saveConfig();
+                            player.sendMessage(prefix + ChatColor.GREEN + "Location green set at: " + green.getBlockX() + "," + green.getBlockY() + "," + green.getBlockZ());
                             reloadConfig();
                         }
                     } else {
