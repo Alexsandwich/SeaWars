@@ -1,5 +1,6 @@
-package me.drunkcactus;
+package com.seawars.currency;
 
+import com.seawars.Seawars;
 import org.apache.logging.log4j.core.pattern.PlainTextRenderer;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -13,16 +14,16 @@ import java.util.zip.GZIPOutputStream;
 
 public class CurrencyManager {
     public static HashMap<UUID, Integer> currency = new HashMap<UUID, Integer>();
-    public Main plugin;
+    public Seawars plugin;
 
-    public CurrencyManager(Main plugin) {
+    public CurrencyManager(Seawars plugin) {
         this.plugin = plugin;
     }
 
     public void saveCurrencyFile() throws FileNotFoundException, IOException {
         for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
 
-            File file = new File("CurrencyData/Currency.dat");
+            File file = new File("Seawars/Currency.dat");
             ObjectOutputStream output = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
             UUID uuid = p.getUniqueId();
 
@@ -43,7 +44,7 @@ public class CurrencyManager {
     }
 
     public void loadCurrencyFile() throws FileNotFoundException, IOException, ClassNotFoundException {
-        File file = new File("CurrencyData/currency.dat");
+        File file = new File("Seawars/currency.dat");
         if (file != null) {
             ObjectInput input = new ObjectInputStream(new GZIPInputStream(new FileInputStream(file)));
             Object readObject = input.readObject();

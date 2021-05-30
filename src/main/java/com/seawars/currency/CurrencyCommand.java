@@ -1,5 +1,6 @@
-package me.drunkcactus;
+package com.seawars.currency;
 
+import com.seawars.Seawars;
 import net.md_5.bungee.chat.SelectorComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -9,12 +10,12 @@ import org.bukkit.command.CommandSender;
 
 public class CurrencyCommand implements CommandExecutor {
 
-    public Main plugin;
+    public Seawars plugin;
 
-    public CurrencyCommand(Main plugin) {
+    public CurrencyCommand(Seawars plugin) {
         this.plugin = plugin;
 
-        plugin.getCommand("currency").setExecutor(this);
+       // plugin.getCommand("currency").setExecutor(this);
     }
 
     @Override
@@ -96,7 +97,7 @@ public class CurrencyCommand implements CommandExecutor {
             sender.sendMessage(CurrencyUtils.chat("You do not have permission to execute this command"));
         }
 
-        return false;
+        return true;
 
     }
 }

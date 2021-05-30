@@ -1,4 +1,4 @@
-package me.drunkcactus;
+package com.seawars.currency;
 
 import org.bukkit.ChatColor;
 
