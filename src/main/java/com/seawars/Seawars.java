@@ -40,6 +40,7 @@ public class Seawars extends JavaPlugin {
         this.getCommand("balance").setExecutor(new getBalance(this));
         this.getCommand("test").setExecutor(new shopCommand(this));
         this.getCommand("team").setExecutor(new teamJoin(this));
+        this.getCommand("restartCount").setExecutor(new restartCount());
 
         //Registering Listeners
         Bukkit.getPluginManager().registerEvents(new onJoin(this), this);

@@ -20,7 +20,7 @@ public class onJoin implements Listener {
 
     static int count = 20;
 
-    String prefix = plugin.prefix;
+    static String prefix = plugin.prefix;
 
     public onJoin(Seawars instance) {
         plugin = instance;
@@ -38,7 +38,7 @@ public class onJoin implements Listener {
     }
 
     //TODO Fix Countdown not restarting!
-    public void countdown(Player player) {
+    public static void countdown(Player player) {
             Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Game starting in " + count + " seconds..");
             new BukkitRunnable() {
                 @Override
