@@ -1,9 +1,10 @@
 main: com.seawars.Seawars
 name: Seawars
 version: 1.0
+api-version: 1.16
 commands:
   set:
-    description: Set Area
+    description: Command to set area
     usage: /set
   help:
     description: Help
@@ -12,8 +13,8 @@ commands:
     description: test
     usage: /test
   balance:
-    description: test
+    description: Command to check your balance
     usage: /balance
   team:
-    description: Join Team
+    description: Command to join team
     usage: /team

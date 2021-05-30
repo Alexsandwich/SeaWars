@@ -1,4 +1,4 @@
-package com.seawars.gui;
+package com.seawars.util;
 
 import com.seawars.Seawars;
 import org.bukkit.Bukkit;
@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scoreboard.*;
 
 
-public class TEAMS implements Listener {
+public class teamSystem implements Listener {
 
     public static ScoreboardManager manager = Bukkit.getScoreboardManager();
     public static Scoreboard board = manager.getNewScoreboard();
@@ -25,7 +25,7 @@ public class TEAMS implements Listener {
     private Seawars plugin;
 
 
-    public TEAMS(Seawars plugin) {
+    public teamSystem(Seawars plugin) {
         this.plugin = plugin;
 
     }

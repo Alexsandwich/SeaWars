@@ -3,7 +3,6 @@ package com.seawars.events;
 import com.seawars.Seawars;
 import com.seawars.gui.GUI;
 import com.seawars.gui.teamGUI;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

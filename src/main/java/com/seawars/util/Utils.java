@@ -1,4 +1,4 @@
-package com.seawars.gui;
+package com.seawars.util;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;

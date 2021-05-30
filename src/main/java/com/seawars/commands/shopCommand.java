@@ -7,10 +7,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Commands implements CommandExecutor {
+public class shopCommand implements CommandExecutor {
 
     private Seawars plugin;
-    public Commands(Seawars plugin) {
+    public shopCommand(Seawars plugin) {
         this.plugin = plugin;
     }
 

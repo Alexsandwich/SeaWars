@@ -1,9 +1,10 @@
 package com.seawars.gui;
 
 import com.seawars.Seawars;
+import com.seawars.util.Utils;
+import com.seawars.util.teamSystem;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
@@ -48,24 +49,24 @@ public class teamGUI implements Listener {
 
     public static void clicked(Player p, int slot, ItemStack clicked, Inventory inv) {
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Red Team"))) {
-            TEAMS.red.addPlayer(p);
+            teamSystem.red.addPlayer(p);
             p.sendMessage(prefix + ChatColor.RED + "You've joined the red team!");
             p.closeInventory();
         }
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Blue Team"))) {
-            TEAMS.blue.addPlayer(p);
+            teamSystem.blue.addPlayer(p);
             p.sendMessage(prefix + ChatColor.BLUE + "You've joined the blue team!");
             p.closeInventory();
         }
 
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Yellow Team"))) {
-            TEAMS.yellow.addPlayer(p);
+            teamSystem.yellow.addPlayer(p);
             p.sendMessage(prefix + ChatColor.YELLOW + "You've joined the yellow team!");
             p.closeInventory();
 
         }
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Green Team"))) {
-            TEAMS.green.addPlayer(p);
+            teamSystem.green.addPlayer(p);
             p.sendMessage(prefix + ChatColor.GREEN + "You've joined the green team!");
             p.closeInventory();
 
