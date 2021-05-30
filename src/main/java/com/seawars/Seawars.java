@@ -1,6 +1,7 @@
 package com.seawars;
 
 import com.seawars.commands.*;
+import com.seawars.events.blockPlace;
 import com.seawars.events.onJoin;
 import com.seawars.events.onLeave;
 import com.seawars.files.DataManager;
@@ -17,7 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Seawars extends JavaPlugin {
 
-    private static Seawars instance;
+    public static Seawars instance;
 
     public FileConfiguration config;
     public DataManager data;
@@ -47,6 +48,7 @@ public class Seawars extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new onLeave(), this);
         Bukkit.getPluginManager().registerEvents(new Listeners(this),this);
         Bukkit.getPluginManager().registerEvents(new teamSystem(this),this);
+        Bukkit.getPluginManager().registerEvents(new blockPlace(this), this);
 
         //Setting up config
         this.getConfig().options().copyDefaults(true);
@@ -56,6 +58,8 @@ public class Seawars extends JavaPlugin {
         //Initializing GUI's
         shopGUI.initialize();
         teamGUI.initialize();
+
+        instance = this;
 
 
     }
