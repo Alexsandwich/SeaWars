@@ -3,6 +3,7 @@ package com.seawars.events;
 import com.seawars.Seawars;
 import com.seawars.util.teamSystem;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -39,6 +40,7 @@ public class blockPlace implements Listener {
 
     }
 
+
     @EventHandler
     public void blockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
@@ -56,12 +58,23 @@ public class blockPlace implements Listener {
         }
     }
 
-    int hit = 0;
+
+    public static HashMap<String, Integer> redobbymap = new HashMap<String, Integer>();
+    public static HashMap<String, Integer> greenobbymap = new HashMap<String, Integer>();
+    //public static HashMap<String, Integer> map = new HashMap<String, Integer>();
+
+
+// add an int for a player
+//map.put(playerName, integer);
+
+    // get an int from a player
+    //int i = map.get(playerName)
 
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event) {
         Entity entity = event.getEntity();
         Player player = (Player) event.getEntity().getShooter();
+
 
 
         if (entity instanceof Arrow) {
@@ -70,16 +83,26 @@ public class blockPlace implements Listener {
             Location loc2 = new Location(loc.getWorld(), loc.getX() + vec.getX(), loc.getY() + vec.getY(), loc.getZ() + vec.getZ());
             event.getEntity().remove();
 
-            if (redblock.contains(loc2.getBlock())) {
+            int ir = redobbymap.get(String.valueOf(player));
+            int ig = greenobbymap.get(String.valueOf(player));
 
-                if (loc2.getBlock().getType() == Material.OBSIDIAN) {
-                        player.sendMessage(String.valueOf(hit));
-                        hit++;
-
+            if(redblock.size() <= 5) {
+                if(teamSystem.red.hasPlayer(player)) {
+                    player.setGameMode(GameMode.SPECTATOR);
                 }
-                if (hit == 5) {
-                    loc2.getBlock().setType(Material.AIR);
-                    hit =0;
+
+            if (redblock.contains(loc2.getBlock())) {
+                if(teamSystem.red.hasPlayer(player)) {
+
+                } else if (loc2.getBlock().getType() == Material.OBSIDIAN) {
+                        redobbymap.put(String.valueOf(player), ir+1);
+                        player.sendMessage(String.valueOf(ir));
+
+                    } if (ir == 5) {
+                        loc2.getBlock().setType(Material.AIR);
+                        redblock.remove(loc2);
+                        redobbymap.replace(String.valueOf(player), 0);
+                    }
                 }
             }
 
@@ -87,8 +110,18 @@ public class blockPlace implements Listener {
             if(blueblock.contains(loc2.getBlock())) {
                 player.sendMessage("blue block");
             }
-            if(greenblock.contains(loc2.getBlock())) {
-                player.sendMessage("green block");
+            if(greenblock.contains(loc2.getBlock())) { {
+                    if(teamSystem.green.hasPlayer(player)) {
+
+                    } else if (loc2.getBlock().getType() == Material.OBSIDIAN) {
+                        greenobbymap.put(String.valueOf(player), ig+1);
+                        player.sendMessage(String.valueOf(ig));
+
+                    } if (ig == 5) {
+                        loc2.getBlock().setType(Material.AIR);
+                        greenobbymap.replace(String.valueOf(player), 0);
+                    }
+                }
             }
             if(yellowblock.contains(loc2.getBlock())) {
                 player.sendMessage("yellow block");
