@@ -10,7 +10,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 
-public class GUI implements Listener {
+public class shopGUI implements Listener {
 
     public static Inventory inv;
     public static String inventory_name;
@@ -18,7 +18,7 @@ public class GUI implements Listener {
 
     private static Seawars plugin;
 
-    public GUI(Seawars plugin) {
+    public shopGUI(Seawars plugin) {
         this.plugin = plugin;
     }
 

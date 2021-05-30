@@ -4,8 +4,8 @@ import com.seawars.commands.*;
 import com.seawars.events.onJoin;
 import com.seawars.events.onLeave;
 import com.seawars.files.DataManager;
-import com.seawars.gui.GUI;
 import com.seawars.events.Listeners;
+import com.seawars.gui.shopGUI;
 import com.seawars.gui.teamGUI;
 import com.seawars.util.teamSystem;
 import org.bukkit.Bukkit;
@@ -53,7 +53,7 @@ public class Seawars extends JavaPlugin {
         this.data = new DataManager(this);
 
         //Initializing GUI's
-        GUI.initialize();
+        shopGUI.initialize();
         teamGUI.initialize();
 
 

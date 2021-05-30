@@ -1,7 +1,7 @@
 package com.seawars.commands;
 
 import com.seawars.Seawars;
-import com.seawars.gui.GUI;
+import com.seawars.gui.shopGUI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,7 +22,7 @@ public class shopCommand implements CommandExecutor {
         Player p =(Player) sender;
 
         if (p.hasPermission("User")){
-            p.openInventory(GUI.GUI(p));
+            p.openInventory(shopGUI.GUI(p));
         }
         return true;
     }
