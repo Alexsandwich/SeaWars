@@ -20,6 +20,8 @@ public class setRegion implements CommandExecutor {
 
     static Seawars plugin;
 
+    String prefix = plugin.prefix;
+
     public setRegion(Seawars instance) {
         plugin = instance;
     }
@@ -37,18 +39,18 @@ public class setRegion implements CommandExecutor {
                         if (args[0].equalsIgnoreCase("1")) {
                             loc1 = player.getLocation();
                             plugin.getConfig().set("region1", loc1);
-                            player.sendMessage(ChatColor.GREEN + "Location 1 set at: " + loc1.getBlockX() + "," + loc1.getBlockY() + "," + loc1.getBlockZ());
+                            player.sendMessage(prefix + ChatColor.GREEN + "Location 1 set at: " + loc1.getBlockX() + "," + loc1.getBlockY() + "," + loc1.getBlockZ());
                             reloadConfig();
                         }
                         if (args[0].equalsIgnoreCase("2")) {
                             loc2 = player.getLocation();
                             plugin.getConfig().set("region2", loc2);
                             plugin.saveConfig();
-                            player.sendMessage(ChatColor.GREEN + "Location 2 set at: " + loc2.getBlockX() + "," + loc2.getBlockY() + "," + loc2.getBlockZ());
+                            player.sendMessage(prefix + ChatColor.GREEN + "Location 2 set at: " + loc2.getBlockX() + "," + loc2.getBlockY() + "," + loc2.getBlockZ());
                             reloadConfig();
                         }
                     } else {
-                        player.sendMessage(ChatColor.RED + "You do not have permission");
+                        player.sendMessage(prefix + ChatColor.RED + "You do not have permission");
                         return true;
                     }
                 }

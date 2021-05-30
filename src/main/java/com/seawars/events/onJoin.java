@@ -20,6 +20,7 @@ public class onJoin implements Listener {
 
     static int count = 20;
 
+    String prefix = plugin.prefix;
 
     public onJoin(Seawars instance) {
         plugin = instance;
@@ -28,7 +29,7 @@ public class onJoin implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        player.sendMessage(ChatColor.RED + "Waiting for players!");
+        player.sendMessage(prefix + ChatColor.RED + "Waiting for players!");
 
 
         if(players.toArray().length == 2) {
@@ -38,18 +39,18 @@ public class onJoin implements Listener {
 
     //TODO Fix Countdown not restarting!
     public void countdown(Player player) {
-            Bukkit.broadcastMessage(ChatColor.YELLOW + "Game starting in " + count + " seconds..");
+            Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Game starting in " + count + " seconds..");
             new BukkitRunnable() {
                 @Override
                 public void run() {
                     if (count == 0) {
                         // Start game method
-                        Bukkit.broadcastMessage(ChatColor.YELLOW + "Teleporting players to arena");
+                        Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Teleporting players to arena");
                         setRegion.startGame(player);
                         cancel(); // Cancels the timer
                     } else {
                         count--;
-                        Bukkit.broadcastMessage(ChatColor.YELLOW + "Game starting in " + count + " seconds..");
+                        Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Game starting in " + count + " seconds..");
                     }
                 }
             }.runTaskTimer(Bukkit.getServer().getPluginManager().getPlugin("Seawars"), 20L, 20L);

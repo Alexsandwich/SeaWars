@@ -24,6 +24,8 @@ public class Seawars extends JavaPlugin {
     public FileConfiguration config;
     public DataManager data;
 
+    public static String prefix = ChatColor.YELLOW + "[Sea Wars] ";
+
 
     public static Seawars getInstance() {
         return instance;

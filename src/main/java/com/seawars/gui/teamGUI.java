@@ -16,6 +16,8 @@ public class teamGUI implements Listener {
 
     private static Seawars plugin;
 
+    static String prefix = plugin.prefix;
+
     public teamGUI(Seawars plugin) {
         this.plugin = plugin;
     }
@@ -30,10 +32,10 @@ public class teamGUI implements Listener {
         Inventory toReturn = Bukkit.createInventory(null, inv_rows, inventory_name);
 
         //  Create item here            (inv, item, ammount, slot, displayname,)
-        Utils.createItemByte(inv, "wool", 14, 1, 1, "Red Team");
-        Utils.createItemByte(inv, "wool", 4, 1, 2, "Yellow Team");
-        Utils.createItemByte(inv, "wool", 5, 1, 3, "Green Team");
-        Utils.createItemByte(inv, "wool", 11, 1, 4, "Blue Team");
+        Utils.createItemByte(inv, "wool", 14, 1, 11, "Red Team");
+        Utils.createItemByte(inv, "wool", 4, 1, 13, "Yellow Team");
+        Utils.createItemByte(inv, "wool", 5, 1, 15, "Green Team");
+        Utils.createItemByte(inv, "wool", 11, 1, 17, "Blue Team");
 
         //utils.createitemByte
 
@@ -47,24 +49,24 @@ public class teamGUI implements Listener {
     public static void clicked(Player p, int slot, ItemStack clicked, Inventory inv) {
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Red Team"))) {
             TEAMS.red.addPlayer(p);
-            p.sendMessage(ChatColor.RED + "You've joined the red team!");
+            p.sendMessage(prefix + ChatColor.RED + "You've joined the red team!");
             p.closeInventory();
         }
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Blue Team"))) {
             TEAMS.blue.addPlayer(p);
-            p.sendMessage(ChatColor.BLUE + "You've joined the blue team!");
+            p.sendMessage(prefix + ChatColor.BLUE + "You've joined the blue team!");
             p.closeInventory();
         }
 
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Yellow Team"))) {
             TEAMS.yellow.addPlayer(p);
-            p.sendMessage(ChatColor.YELLOW + "You've joined the yellow team!");
+            p.sendMessage(prefix + ChatColor.YELLOW + "You've joined the yellow team!");
             p.closeInventory();
 
         }
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Green Team"))) {
             TEAMS.green.addPlayer(p);
-            p.sendMessage(ChatColor.GREEN + "You've joined the green team!");
+            p.sendMessage(prefix + ChatColor.GREEN + "You've joined the green team!");
             p.closeInventory();
 
         }
