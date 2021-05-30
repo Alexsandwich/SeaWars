@@ -1,7 +1,6 @@
 package com.seawars.currency;
 
 import com.seawars.Seawars;
-import net.md_5.bungee.chat.SelectorComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandExecutor;
@@ -15,7 +14,6 @@ public class CurrencyCommand implements CommandExecutor {
     public CurrencyCommand(Seawars plugin) {
         this.plugin = plugin;
 
-       // plugin.getCommand("currency").setExecutor(this);
     }
 
     @Override

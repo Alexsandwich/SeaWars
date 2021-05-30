@@ -1,7 +1,6 @@
 package com.seawars.commands;
 
 import com.seawars.Seawars;
-import com.seawars.gui.teamGUI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

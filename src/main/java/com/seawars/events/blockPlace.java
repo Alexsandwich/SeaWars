@@ -2,7 +2,6 @@ package com.seawars.events;
 
 import com.seawars.Seawars;
 import com.seawars.util.teamSystem;
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -10,21 +9,15 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Snowball;
-import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 public class blockPlace implements Listener {
 
@@ -61,14 +54,6 @@ public class blockPlace implements Listener {
 
     public static HashMap<String, Integer> redobbymap = new HashMap<String, Integer>();
     public static HashMap<String, Integer> greenobbymap = new HashMap<String, Integer>();
-    //public static HashMap<String, Integer> map = new HashMap<String, Integer>();
-
-
-// add an int for a player
-//map.put(playerName, integer);
-
-    // get an int from a player
-    //int i = map.get(playerName)
 
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event) {

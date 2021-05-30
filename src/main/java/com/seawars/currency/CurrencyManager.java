@@ -1,11 +1,8 @@
 package com.seawars.currency;
 
 import com.seawars.Seawars;
-import org.apache.logging.log4j.core.pattern.PlainTextRenderer;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-
-import javax.imageio.IIOException;
 import java.io.*;
 import java.util.HashMap;
 import java.util.UUID;
