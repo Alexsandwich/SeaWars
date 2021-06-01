@@ -5,7 +5,6 @@ import com.seawars.util.teamSystem;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -40,16 +39,16 @@ public class blockPlace implements Listener {
     @EventHandler
     public void blockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
-        if(teamSystem.red.hasPlayer(player)) {
+        if (teamSystem.red.hasPlayer(player)) {
             redblock.add(event.getBlockPlaced());
         }
-        if(teamSystem.blue.hasPlayer(player)) {
+        if (teamSystem.blue.hasPlayer(player)) {
             blueblock.add(event.getBlockPlaced());
         }
-        if(teamSystem.yellow.hasPlayer(player)) {
+        if (teamSystem.yellow.hasPlayer(player)) {
             yellowblock.add(event.getBlockPlaced());
         }
-        if(teamSystem.green.hasPlayer(player)) {
+        if (teamSystem.green.hasPlayer(player)) {
             greenblock.add(event.getBlockPlaced());
         }
     }
@@ -57,12 +56,18 @@ public class blockPlace implements Listener {
 
     public static HashMap<String, Integer> redobbymap = new HashMap<String, Integer>();
     public static HashMap<String, Integer> greenobbymap = new HashMap<String, Integer>();
+    public static HashMap<String, Integer> blueobbymap = new HashMap<String, Integer>();
+    public static HashMap<String, Integer> yellowobbymap = new HashMap<String, Integer>();
+
+    public static HashMap<String, Integer> redwoodmap = new HashMap<String, Integer>();
+    public static HashMap<String, Integer> greenwoodmap = new HashMap<String, Integer>();
+    public static HashMap<String, Integer> bluewoodmap = new HashMap<String, Integer>();
+    public static HashMap<String, Integer> yellowwoodmap = new HashMap<String, Integer>();
 
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event) {
         Entity entity = event.getEntity();
         Player player = (Player) event.getEntity().getShooter();
-
 
 
         if (entity instanceof Arrow) {
@@ -73,50 +78,133 @@ public class blockPlace implements Listener {
 
             int ir = redobbymap.get(String.valueOf(player));
             int ig = greenobbymap.get(String.valueOf(player));
+            int ib = blueobbymap.get(String.valueOf(player));
+            int iy = yellowobbymap.get(String.valueOf(player));
 
-            if(redblock.size() <= 5) {
-                if(teamSystem.red.hasPlayer(player)) {
-                    //player.setGameMode(GameMode.SPECTATOR);
-                }
+            int irw = redwoodmap.get(String.valueOf(player));
+            int igw = greenwoodmap.get(String.valueOf(player));
+            int ibw = bluewoodmap.get(String.valueOf(player));
+            int iyw = yellowwoodmap.get(String.valueOf(player));
+
+            //if(redblock.size() <= 5) {
+            //if(teamSystem.red.hasPlayer(player)) {
+            //player.setGameMode(GameMode.SPECTATOR);
+            //}
 
             if (redblock.contains(loc2.getBlock())) {
-                if(teamSystem.red.hasPlayer(player)) {
-
+                if (teamSystem.red.hasPlayer(player)) {
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You can not damage your own boat"));
                 } else if (loc2.getBlock().getType() == Material.OBSIDIAN) {
-                        redobbymap.put(String.valueOf(player), ir+1);
-                        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You've hit obsidian " + ir + "/5"));
+                    redobbymap.put(String.valueOf(player), ir + 1);
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You've hit obsidian " + ir + "/5"));
 
-                    } if (ir == 5) {
+                } else if (loc2.getBlock().getType() == Material.OAK_PLANKS){
+                    redwoodmap.put(String.valueOf(player), irw +1);
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You've hit wood " + irw + "/2"));
+                }
+                if (ir == 5) {
+                    if(loc2.getBlock().getType() == Material.OBSIDIAN) {
                         loc2.getBlock().setType(Material.AIR);
                         redblock.remove(loc2);
-                        redobbymap.replace(String.valueOf(player), 0);
+                        redobbymap.replace(String.valueOf(player), 1);
                     }
                 }
-            }
-
-
-            if(blueblock.contains(loc2.getBlock())) {
-                player.sendMessage("blue block");
-            }
-            if(greenblock.contains(loc2.getBlock())) { {
-                    if(teamSystem.green.hasPlayer(player)) {
-
-                    } else if (loc2.getBlock().getType() == Material.OBSIDIAN) {
-                        greenobbymap.put(String.valueOf(player), ig+1);
-                        player.sendMessage(String.valueOf(ig));
-
-                    } if (ig == 5) {
+                if (irw == 2) {
+                    if(loc2.getBlock().getType() == Material.OAK_PLANKS) {
                         loc2.getBlock().setType(Material.AIR);
-                        greenobbymap.replace(String.valueOf(player), 0);
+                        redblock.remove(loc2);
+                        redwoodmap.replace(String.valueOf(player), 1);
                     }
                 }
             }
-            if(yellowblock.contains(loc2.getBlock())) {
-                player.sendMessage("yellow block");
+            //}
+
+
+            if (blueblock.contains(loc2.getBlock())) {
+                if (teamSystem.blue.hasPlayer(player)) {
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You can not damage your own boat"));
+                } else if (loc2.getBlock().getType() == Material.OBSIDIAN) {
+                    blueobbymap.put(String.valueOf(player), ib + 1);
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.BLUE + "You've hit obsidian " + ib + "/5"));
+
+                } else if (loc2.getBlock().getType() == Material.OAK_PLANKS){
+                    bluewoodmap.put(String.valueOf(player), ibw +1);
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.BLUE + "You've hit wood " + ibw + "/2"));
+                }
+                if (ib == 5) {
+                    if(loc2.getBlock().getType() == Material.OBSIDIAN) {
+                        loc2.getBlock().setType(Material.AIR);
+                        blueblock.remove(loc2);
+                        blueobbymap.replace(String.valueOf(player), 1);
+                    }
+                }
+                if (ibw == 2) {
+                    if(loc2.getBlock().getType() == Material.OAK_PLANKS) {
+                        loc2.getBlock().setType(Material.AIR);
+                        redblock.remove(loc2);
+                        bluewoodmap.replace(String.valueOf(player), 1);
+                    }
+                }
             }
 
+
+            if (greenblock.contains(loc2.getBlock())) {
+                if (teamSystem.green.hasPlayer(player)) {
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You can not damage your own boat"));
+                } else if (loc2.getBlock().getType() == Material.OBSIDIAN) {
+                    greenobbymap.put(String.valueOf(player), ig + 1);
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GREEN + "You've hit obsidian " + ig + "/5"));
+
+                } else if (loc2.getBlock().getType() == Material.OAK_PLANKS){
+                    greenwoodmap.put(String.valueOf(player), igw +1);
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GREEN + "You've hit wood " + igw + "/2"));
+                }
+                if (ig == 5) {
+                    if(loc2.getBlock().getType() == Material.OBSIDIAN) {
+                        loc2.getBlock().setType(Material.AIR);
+                        greenblock.remove(loc2);
+                        greenobbymap.replace(String.valueOf(player), 1);
+                    }
+                }
+                if (igw == 2) {
+                    if(loc2.getBlock().getType() == Material.OAK_PLANKS) {
+                        loc2.getBlock().setType(Material.AIR);
+                        redblock.remove(loc2);
+                        greenwoodmap.replace(String.valueOf(player), 1);
+                    }
+                }
+            }
+
+            if (yellowblock.contains(loc2.getBlock())) {
+                if (teamSystem.yellow.hasPlayer(player)) {
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You can not damage your own boat"));
+                } else if (loc2.getBlock().getType() == Material.OBSIDIAN) {
+                    yellowobbymap.put(String.valueOf(player), iy + 1);
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.YELLOW + "You've hit obsidian " + iy + "/5"));
+
+                } else if (loc2.getBlock().getType() == Material.OAK_PLANKS){
+                    yellowwoodmap.put(String.valueOf(player), iyw +1);
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.YELLOW + "You've hit wood " + iyw + "/2"));
+                }
+                if (iy == 5) {
+                    if(loc2.getBlock().getType() == Material.OBSIDIAN) {
+                        loc2.getBlock().setType(Material.AIR);
+                        yellowblock.remove(loc2);
+                        yellowobbymap.replace(String.valueOf(player), 1);
+                    }
+                }
+                if (iyw == 2) {
+                    if(loc2.getBlock().getType() == Material.OAK_PLANKS) {
+                        loc2.getBlock().setType(Material.AIR);
+                        yellowblock.remove(loc2);
+                        yellowwoodmap.replace(String.valueOf(player), 1);
+                    }
+                }
+            }
         }
     }
+
+
 
     @EventHandler
     public void blockBreak(BlockBreakEvent event) {

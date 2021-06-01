@@ -23,3 +23,6 @@ commands:
   currency:
     description: money
     usage: /currency
+  give:
+    description: Give money
+    usage: /give

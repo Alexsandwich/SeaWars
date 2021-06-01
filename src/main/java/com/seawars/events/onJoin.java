@@ -33,8 +33,17 @@ public class onJoin implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         player.sendMessage(prefix + ChatColor.RED + "Waiting for players!");
-        blockPlace.redobbymap.put(String.valueOf(player), 0);
-        blockPlace.greenobbymap.put(String.valueOf(player), 0);
+
+        blockPlace.redobbymap.put(String.valueOf(player), 1);
+        blockPlace.greenobbymap.put(String.valueOf(player), 1);
+        blockPlace.yellowobbymap.put(String.valueOf(player), 1);
+        blockPlace.blueobbymap.put(String.valueOf(player), 1);
+
+        blockPlace.redwoodmap.put(String.valueOf(player), 1);
+        blockPlace.bluewoodmap.put(String.valueOf(player), 1);
+        blockPlace.greenwoodmap.put(String.valueOf(player), 1);
+        blockPlace.yellowwoodmap.put(String.valueOf(player), 1);
+
 
         if(players.toArray().length == 2) {
             countdown(player);
