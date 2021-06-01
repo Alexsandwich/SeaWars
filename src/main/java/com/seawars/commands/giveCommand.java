@@ -35,18 +35,19 @@ public class giveCommand implements CommandExecutor {
             }
         } else if (args.length == 2) {
             @SuppressWarnings("deprecation")
-            OfflinePlayer p = Bukkit.getOfflinePlayer(args[1]);
+            OfflinePlayer p = Bukkit.getOfflinePlayer(args[0]);
             if (p != null) {
 
                 int amount = Integer.parseInt(args[2]);
                 if(manager.getPlayerCurrency(player) >= amount) {
                     manager.addCurrencyToPlayer(p, amount);
                     manager.removeCurrencyFromPlayer(player, amount);
+                    player.sendMessage(String.valueOf(amount));
                 }  else{
                     sender.sendMessage("no money!");
                 }
             } else {
-                sender.sendMessage(CurrencyUtils.chat("Player" + args[1] + "Could not be found"));
+                sender.sendMessage(CurrencyUtils.chat("Player" + args[0] + "Could not be found"));
 
             }
         } else {
