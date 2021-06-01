@@ -1,6 +1,7 @@
 package com.seawars.commands;
 
 import com.seawars.Seawars;
+import com.seawars.currency.CurrencyManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,6 +18,7 @@ public class getBalance implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+        CurrencyManager manager = new CurrencyManager(plugin);
         if (!(commandSender instanceof Player)) {
             commandSender.sendMessage("You are not a player!");
             return true;
@@ -29,7 +31,7 @@ public class getBalance implements CommandExecutor {
             //plugin.data.getConfig().set("players." + player.getUniqueId().toString() + ".balance", (balance + 100));
             plugin.data.saveConfig();
 
-            player.sendMessage("Your Balance is: " + balance);
+            player.sendMessage("Your Balance is: " + manager.getPlayerCurrency(player) + " $ ");
 
         }
 
