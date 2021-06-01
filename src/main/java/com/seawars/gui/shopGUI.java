@@ -80,6 +80,7 @@ public class shopGUI implements Listener {
 
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat(ChatColor.RED + "Next Page"))) {
             p.closeInventory();
+            p.openInventory(cosmeticGUI.GUI(p));
 
         }
 

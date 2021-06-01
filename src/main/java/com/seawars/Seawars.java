@@ -5,6 +5,7 @@ import com.seawars.currency.CurrencyCommand;
 import com.seawars.currency.CurrencyManager;
 import com.seawars.events.*;
 import com.seawars.files.DataManager;
+import com.seawars.gui.cosmeticGUI;
 import com.seawars.gui.shopGUI;
 import com.seawars.gui.teamGUI;
 import com.seawars.util.teamSystem;
@@ -61,6 +62,7 @@ public class Seawars extends JavaPlugin {
         //Initializing GUI's
         shopGUI.initialize();
         teamGUI.initialize();
+        cosmeticGUI.initialize();
 
         instance = this;
 
