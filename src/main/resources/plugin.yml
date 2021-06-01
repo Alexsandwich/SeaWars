@@ -8,9 +8,9 @@ commands:
   help:
     description: Help
     usage: /help
-  test:
-    description: test
-    usage: /test
+  shop:
+    description: shop
+    usage: /shop
   balance:
     description: Command to check your balance
     usage: /balance

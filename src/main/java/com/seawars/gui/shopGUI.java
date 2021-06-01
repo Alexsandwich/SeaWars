@@ -3,6 +3,7 @@ package com.seawars.gui;
 import com.seawars.Seawars;
 import com.seawars.currency.CurrencyManager;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -38,6 +39,8 @@ public class shopGUI implements Listener {
         Utils.createItem(inv, "wood_spade", 1, 1, "Shovel", "BRUH");
         Utils.createItem(inv, "iron_sword", 1, 2, "Iron Sword", "KILL");
         Utils.createItemByte(inv, "wood", 0, 4, 3, "Oak Planks", "WOOD");
+        Utils.createItem(inv, "blaze_Rod", 1, 36, ChatColor.RED + "Next Page");
+
 
         //utils.createitemByte
 
@@ -75,9 +78,15 @@ public class shopGUI implements Listener {
 
         }
 
+        if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat(ChatColor.RED + "Next Page"))) {
+            p.closeInventory();
+
+        }
+
 
 
     }
+
 
 
 
