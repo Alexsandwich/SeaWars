@@ -2,6 +2,9 @@ package com.seawars.events;
 
 import com.seawars.Seawars;
 import com.seawars.util.teamSystem;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -73,7 +76,7 @@ public class blockPlace implements Listener {
 
             if(redblock.size() <= 5) {
                 if(teamSystem.red.hasPlayer(player)) {
-                    player.setGameMode(GameMode.SPECTATOR);
+                    //player.setGameMode(GameMode.SPECTATOR);
                 }
 
             if (redblock.contains(loc2.getBlock())) {
@@ -81,7 +84,7 @@ public class blockPlace implements Listener {
 
                 } else if (loc2.getBlock().getType() == Material.OBSIDIAN) {
                         redobbymap.put(String.valueOf(player), ir+1);
-                        player.sendMessage(String.valueOf(ir));
+                        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You've hit obsidian " + ir + "/5"));
 
                     } if (ir == 5) {
                         loc2.getBlock().setType(Material.AIR);
