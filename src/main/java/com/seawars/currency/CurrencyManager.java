@@ -3,6 +3,8 @@ package com.seawars.currency;
 import com.seawars.Seawars;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.UUID;
@@ -85,15 +87,14 @@ public class CurrencyManager {
 
     }
 
-    public int getPlayerCurrency(OfflinePlayer p){
-        if (currency.get(p.getUniqueId()) !=null) {
+    public int getPlayerCurrency(OfflinePlayer p) {
+        if (currency.get(p.getUniqueId()) != null) {
             return currency.get(p.getUniqueId());
 
-        }else{
+        } else {
             return 0;
         }
-
-
     }
+
 
 }

@@ -8,6 +8,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class giveCommand implements CommandExecutor {
 
@@ -22,7 +23,7 @@ public class giveCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
+        Player player = (Player) sender;
         if (sender.hasPermission("currencyManager.use")) {
             if (args.length == 0) {
 
@@ -38,9 +39,9 @@ public class giveCommand implements CommandExecutor {
             if (p != null) {
 
                 int amount = Integer.parseInt(args[2]);
-                if(manager.getPlayerCurrency((OfflinePlayer) sender) >= amount) {
+                if(manager.getPlayerCurrency(player) >= amount) {
                     manager.addCurrencyToPlayer(p, amount);
-                    manager.removeCurrencyFromPlayer((OfflinePlayer) sender, amount);
+                    manager.removeCurrencyFromPlayer(player, amount);
                 }  else{
                     sender.sendMessage("no money!");
                 }

@@ -20,7 +20,7 @@ commands:
   restartcount:
     description: Restarts Countdown
     usage: /restartcount
-  coin:
+  currency:
     description: money
     usage: /coin
   give:
