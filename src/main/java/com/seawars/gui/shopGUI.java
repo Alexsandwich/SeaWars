@@ -1,6 +1,7 @@
 package com.seawars.gui;
 
 import com.seawars.Seawars;
+import com.seawars.currency.CurrencyManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -15,7 +16,10 @@ public class shopGUI implements Listener {
     public static String inventory_name;
     public static int inv_rows = 4 * 9;
 
+
     private static Seawars plugin;
+
+    static CurrencyManager manager = new CurrencyManager(plugin);
 
     public shopGUI(Seawars plugin) {
         this.plugin = plugin;
@@ -46,9 +50,15 @@ public class shopGUI implements Listener {
 
     public static void clicked(Player p, int slot, ItemStack clicked, Inventory inv) {
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Shovel"))) {
-            ItemStack shovel = new ItemStack(Material.WOODEN_SHOVEL);
-            p.getInventory().addItem(shovel);
-            p.sendMessage(Utils.chat(" &8[&6*&8] &6&1You bought some drip "));
+            if(manager.getPlayerCurrency(p) >= 500) {
+                ItemStack shovel = new ItemStack(Material.WOODEN_SHOVEL);
+                p.getInventory().addItem(shovel);
+                p.sendMessage(Utils.chat(" &8[&6*&8] &6&1You bought some drip "));
+                manager.removeCurrencyFromPlayer(p, 500);
+            } else {
+                p.sendMessage("You do not have enough money");
+            }
+
         }
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Iron Sword"))) {
             ItemStack sword = new ItemStack(Material.IRON_SWORD);

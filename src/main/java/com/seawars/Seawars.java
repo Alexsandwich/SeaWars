@@ -14,6 +14,7 @@ import com.seawars.util.teamSystem;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -32,7 +33,6 @@ public class Seawars extends JavaPlugin {
     public static Seawars getInstance() {
         return instance;
     }
-
 
     @Override
     public void onEnable() {

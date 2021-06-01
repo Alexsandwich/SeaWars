@@ -73,7 +73,7 @@ public class CurrencyManager {
 
     public void removeCurrencyFromPlayer(OfflinePlayer p, int amount) {
         if (currency.get(p.getUniqueId()) != null) {
-            currency.put(p.getUniqueId(), currency.get(p.getUniqueId()) + amount);
+            currency.put(p.getUniqueId(), currency.get(p.getUniqueId()) - amount);
 
 
         }
