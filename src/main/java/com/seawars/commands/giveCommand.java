@@ -38,9 +38,9 @@ public class giveCommand implements CommandExecutor {
             if (p != null) {
 
                 int amount = Integer.parseInt(args[2]);
-                if(manager.getPlayerCurrency(p) >= amount) {
-                    manager.addCurrencyToPlayer(args[1], amount);
-                    manager.removeCurrencyFromPlayer(p, amount);
+                if(manager.getPlayerCurrency((OfflinePlayer) sender) >= amount) {
+                    manager.addCurrencyToPlayer(p, amount);
+                    manager.removeCurrencyFromPlayer((OfflinePlayer) sender, amount);
                 }  else{
                     sender.sendMessage("no money!");
                 }
@@ -56,4 +56,4 @@ public class giveCommand implements CommandExecutor {
 
     }
 }
-}
+

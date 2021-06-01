@@ -14,7 +14,7 @@ public class getBalance implements CommandExecutor {
         this.plugin = plugin;
     }
 
-    public int balance = 0;
+
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -27,7 +27,7 @@ public class getBalance implements CommandExecutor {
 
             //This method bellow obtains the players money
             if (plugin.data.getConfig().contains("players." + player.getUniqueId().toString() + ".balance"))
-                balance = plugin.data.getConfig().getInt("players." + player.getUniqueId().toString() + ".balance");
+
             //plugin.data.getConfig().set("players." + player.getUniqueId().toString() + ".balance", (balance + 100));
             plugin.data.saveConfig();
 

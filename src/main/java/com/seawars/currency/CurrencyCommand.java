@@ -13,6 +13,7 @@ public class CurrencyCommand implements CommandExecutor {
 
     public CurrencyCommand(Seawars plugin) {
         this.plugin = plugin;
+        plugin.getCommand("coin").setExecutor(this);
 
     }
 
@@ -35,7 +36,7 @@ public class CurrencyCommand implements CommandExecutor {
                 } else if (args[1].equalsIgnoreCase("set")) {
                     sender.sendMessage(CurrencyUtils.chat("/currency <set> <player> <amount>"));
 
-                } else if (args[1].equalsIgnoreCase("balance")) {
+                } else if (args[0].equalsIgnoreCase("balance")) {
                     sender.sendMessage(CurrencyUtils.chat("/currency <balance> <player>"));
 
 
@@ -44,14 +45,14 @@ public class CurrencyCommand implements CommandExecutor {
             } else if (args.length == 2) {
                 CurrencyManager manager = new CurrencyManager(plugin);
                 @SuppressWarnings("deprecation")
-                OfflinePlayer p = Bukkit.getOfflinePlayer(args[1]);
+                OfflinePlayer p = Bukkit.getOfflinePlayer(args[0]);
                 if (p != null) {
                     if (args[0].equalsIgnoreCase("balance")) {
-                        sender.sendMessage(CurrencyUtils.chat(" The player " + p.getName() +" currently has Balance " + manager.getPlayerCurrency(p)));
+                        sender.sendMessage(CurrencyUtils.chat( "Balance " + manager.getPlayerCurrency(p)));
                         return true;
 
                     } else {
-                        sender.sendMessage(CurrencyUtils.chat("/currency <add>" + p.getName() + "<amount>"));
+                        sender.sendMessage(CurrencyUtils.chat("/coin <add>" + p.getName() + "<amount>"));
                     }
                 } else {
                     sender.sendMessage(CurrencyUtils.chat("Player" + args[1] + "Could not be found"));
@@ -65,17 +66,17 @@ public class CurrencyCommand implements CommandExecutor {
                 if (args[0].equalsIgnoreCase("add")) {
                     if (p != null) {
                         manager.addCurrencyToPlayer(p, amount);
-                        sender.sendMessage(CurrencyUtils.chat("You have succesfully added $" + args[2] + "to the player" + p.getName()));
+                        sender.sendMessage(CurrencyUtils.chat(" You have succesfully added $ " + args[2] + " to the player " + p.getName()));
 
 
                     } else {
-                        sender.sendMessage(CurrencyUtils.chat("Player" + args[1] + "Could not be found"));
+                        sender.sendMessage(CurrencyUtils.chat(" Player " + args[1] + " Could not be found "));
 
                     }
                 } else if (args[0].equalsIgnoreCase("remove")) {
                     if (p != null) {
                         manager.removeCurrencyFromPlayer(p, amount);
-                        sender.sendMessage(CurrencyUtils.chat("You have succesfully removed $" + args[2] + "to the player" + p.getName()));
+                        sender.sendMessage(CurrencyUtils.chat(" You have succesfully removed $ " + args[2] + " to the player " + p.getName()));
 
 
                     } else {
