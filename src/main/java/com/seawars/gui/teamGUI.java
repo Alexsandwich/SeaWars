@@ -39,10 +39,10 @@ public class teamGUI implements Listener {
         Inventory toReturn = Bukkit.createInventory(null, inv_rows, inventory_name);
 
         //  Create item here            (inv, item, ammount, slot, displayname,)
-        Utils.createItemByte(inv, "wool", 14, 1, 11, "Red Team");
-        Utils.createItemByte(inv, "wool", 4, 1, 13, "Yellow Team");
-        Utils.createItemByte(inv, "wool", 5, 1, 15, "Green Team");
-        Utils.createItemByte(inv, "wool", 11, 1, 17, "Blue Team");
+        Utils.createItemByte(inv, "wool", 14, 1, 11, ChatColor.RED + "Red Team");
+        Utils.createItemByte(inv, "wool", 4, 1, 13, ChatColor.YELLOW + "Yellow Team");
+        Utils.createItemByte(inv, "wool", 5, 1, 15, ChatColor.GREEN + "Green Team");
+        Utils.createItemByte(inv, "wool", 11, 1, 17, ChatColor.BLUE + "Blue Team");
 
         //utils.createitemByte
 
@@ -57,7 +57,7 @@ public class teamGUI implements Listener {
 
 
     public static void clicked(Player p, int slot, ItemStack clicked, Inventory inv) {
-        if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Red Team"))) {
+        if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat(ChatColor.RED + "Red Team"))) {
             teamSystem.red.addPlayer(p);
             p.sendMessage(prefix + ChatColor.RED + "You've joined the red team!");
             p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You've joined the red team!"));
@@ -78,7 +78,7 @@ public class teamGUI implements Listener {
             p.getInventory().setChestplate(chestr);
         }
 
-        if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Blue Team"))) {
+        if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat(ChatColor.BLUE + "Blue Team"))) {
             teamSystem.blue.addPlayer(p);
             p.sendMessage(prefix + ChatColor.BLUE + "You've joined the blue team!");
             p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.BLUE + "You've joined the blue team!"));
@@ -102,7 +102,7 @@ public class teamGUI implements Listener {
 
         }
 
-        if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Yellow Team"))) {
+        if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat(ChatColor.YELLOW + "Yellow Team"))) {
             teamSystem.yellow.addPlayer(p);
             p.sendMessage(prefix + ChatColor.YELLOW + "You've joined the yellow team!");
             p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.YELLOW + "You've joined the yellow team!"));
@@ -123,7 +123,7 @@ public class teamGUI implements Listener {
             p.getInventory().setChestplate(chesty);
 
         }
-        if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Green Team"))) {
+        if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat(ChatColor.GREEN + "Green Team"))) {
             teamSystem.green.addPlayer(p);
             p.sendMessage(prefix + ChatColor.GREEN + "You've joined the green team!");
             p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GREEN + "You've joined the green team!"));
