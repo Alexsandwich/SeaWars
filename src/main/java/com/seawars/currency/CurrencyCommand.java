@@ -45,17 +45,16 @@ public class CurrencyCommand implements CommandExecutor {
             } else if (args.length == 2) {
                 CurrencyManager manager = new CurrencyManager(plugin);
                 @SuppressWarnings("deprecation")
-                OfflinePlayer p = Bukkit.getOfflinePlayer(args[0]);
-                if (p != null) {
-                    if (args[0].equalsIgnoreCase("balance")) {
-                        sender.sendMessage(CurrencyUtils.chat( "Balance " + manager.getPlayerCurrency(p)));
-                        return true;
+                OfflinePlayer p = Bukkit.getOfflinePlayer(args[1]);
+                if (args[0].equalsIgnoreCase("balance")) {
+                    if (p.isOnline()) {
+                        sender.sendMessage(CurrencyUtils.chat(args[1] + " Balance's is " + manager.getPlayerCurrency(p) + " $"));
 
-                    } else {
-                        sender.sendMessage(CurrencyUtils.chat("/coin <add>" + p.getName() + "<amount>"));
+                        return true;
                     }
+
                 } else {
-                    sender.sendMessage(CurrencyUtils.chat("Player" + args[1] + "Could not be found"));
+                    sender.sendMessage(CurrencyUtils.chat(" Player " + args[1] + " Could not be found "));
 
                 }
             } else if (args.length == 3) {
@@ -64,9 +63,9 @@ public class CurrencyCommand implements CommandExecutor {
                 CurrencyManager manager = new CurrencyManager(plugin);
                 OfflinePlayer p = Bukkit.getOfflinePlayer(args[1]);
                 if (args[0].equalsIgnoreCase("add")) {
-                    if (p != null) {
+                    if (p.isOnline()) {
                         manager.addCurrencyToPlayer(p, amount);
-                        sender.sendMessage(CurrencyUtils.chat(" You have succesfully added $ " + args[2] + " to the player " + p.getName()));
+                        sender.sendMessage(CurrencyUtils.chat(" You have successfully added " + args[2] + " $" + " to the player " + p.getName()));
 
 
                     } else {
@@ -74,26 +73,26 @@ public class CurrencyCommand implements CommandExecutor {
 
                     }
                 } else if (args[0].equalsIgnoreCase("remove")) {
-                    if (p != null) {
+                    if (p.isOnline()) {
                         manager.removeCurrencyFromPlayer(p, amount);
-                        sender.sendMessage(CurrencyUtils.chat(" You have succesfully removed $ " + args[2] + " to the player " + p.getName()));
+                        sender.sendMessage(CurrencyUtils.chat(" You have successfully removed " + args[2] + " $" + " from the player " + p.getName()));
 
 
                     } else {
-                        sender.sendMessage(CurrencyUtils.chat("Player" + args[1] + "Could not be found"));
+                        sender.sendMessage(CurrencyUtils.chat(" Player " + args[1] + " Could not be found "));
 
                     }
                 } else if (args[0].equalsIgnoreCase("set")) {
-                    if (p != null) {
+                    if (p.isOnline()) {
                         manager.setPlayerCurrency(p, amount);
-                        sender.sendMessage(CurrencyUtils.chat("You have succesfully set the player" + p.getName() + "to the player" + args[2]));
+                        sender.sendMessage(CurrencyUtils.chat(" You have successfully set the player " + p.getName() + " " + args[2] + " $"));
                     } else {
-                        sender.sendMessage(CurrencyUtils.chat("Player" + args[1] + "Could not be found"));
+                        sender.sendMessage(CurrencyUtils.chat(" Player " + args[1] + " Could not be found "));
                     }
                 }
             }
         } else {
-            sender.sendMessage(CurrencyUtils.chat("You do not have permission to execute this command"));
+            sender.sendMessage(CurrencyUtils.chat(" You do not have permission to execute this command "));
         }
 
         return true;
