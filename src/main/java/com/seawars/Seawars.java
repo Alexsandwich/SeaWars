@@ -36,7 +36,10 @@ public class Seawars extends JavaPlugin {
     public void onEnable() {
         Bukkit.getLogger().info("Seawars has been enabled!");
 
-        //Registering Commands
+        /**
+         *      Registering all commands
+         *      this.getCommand("/command").setExecutor(new *class-that-contains-command(this));
+         */
         this.getCommand("set").setExecutor(new setRegion(this));
         this.getCommand("help").setExecutor(new helpCommand());
         this.getCommand("balance").setExecutor(new getBalance(this));
@@ -46,7 +49,10 @@ public class Seawars extends JavaPlugin {
         this.getCommand("currency").setExecutor(new CurrencyCommand(this));
         this.getCommand("give").setExecutor(new giveCommand(this));
 
-        //Registering Listeners
+        /**
+         *     Registering all events/listeners
+         *     Bukkit.getPluginManager.registerEvents(new *class-that-contains-event(this), this);
+         */
         Bukkit.getPluginManager().registerEvents(new onJoin(this), this);
         Bukkit.getPluginManager().registerEvents(new onLeave(), this);
         Bukkit.getPluginManager().registerEvents(new Listeners(this),this);
