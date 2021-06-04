@@ -12,7 +12,7 @@ import com.seawars.util.teamSystem;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.permissions.Permission;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -32,6 +32,7 @@ public class Seawars extends JavaPlugin {
         return instance;
     }
 
+
     @Override
     public void onEnable() {
         Bukkit.getLogger().info("Seawars has been enabled!");
@@ -48,6 +49,7 @@ public class Seawars extends JavaPlugin {
         this.getCommand("restartCount").setExecutor(new restartCount());
         this.getCommand("currency").setExecutor(new CurrencyCommand(this));
         this.getCommand("give").setExecutor(new giveCommand(this));
+        this.getCommand("test").setExecutor(new moveBlock());
 
         /**
          *     Registering all events/listeners

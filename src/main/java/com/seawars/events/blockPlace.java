@@ -23,10 +23,15 @@ import java.util.List;
 
 public class blockPlace implements Listener {
 
-    List<Block> redblock = new ArrayList<>();
-    List<Block> blueblock = new ArrayList<>();
-    List<Block> yellowblock = new ArrayList<>();
-    List<Block> greenblock = new ArrayList<>();
+    public static List<Block> redblock = new ArrayList<>();
+    public static List<Block> blueblock = new ArrayList<>();
+    public static List<Block> yellowblock = new ArrayList<>();
+    public static List<Block> greenblock = new ArrayList<>();
+
+    public static List<Location> redblockloc = new ArrayList<>();
+    public static List<Location> blueblockloc = new ArrayList<>();
+    public static List<Location> yellowblockloc = new ArrayList<>();
+    public static List<Location> greenblockloc = new ArrayList<>();
 
     private Seawars plugin;
 
@@ -41,15 +46,19 @@ public class blockPlace implements Listener {
         Player player = event.getPlayer();
         if (teamSystem.red.hasPlayer(player)) {
             redblock.add(event.getBlockPlaced());
+            redblockloc.add(event.getBlockPlaced().getLocation());
         }
         if (teamSystem.blue.hasPlayer(player)) {
             blueblock.add(event.getBlockPlaced());
+            blueblockloc.add(event.getBlockPlaced().getLocation());
         }
         if (teamSystem.yellow.hasPlayer(player)) {
             yellowblock.add(event.getBlockPlaced());
+            yellowblockloc.add(event.getBlockPlaced().getLocation());
         }
         if (teamSystem.green.hasPlayer(player)) {
             greenblock.add(event.getBlockPlaced());
+            greenblockloc.add(event.getBlockPlaced().getLocation());
         }
     }
 

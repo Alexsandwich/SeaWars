@@ -26,3 +26,6 @@ commands:
   give:
     description: Give money
     usage: /give
+  test:
+    description: test
+    usage: /test
