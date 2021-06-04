@@ -1,12 +1,12 @@
 package com.seawars.events;
 
 import com.seawars.Seawars;
+import com.seawars.currency.CurrencyManager;
+import com.seawars.gui.Utils;
 import com.seawars.util.teamSystem;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -16,6 +16,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.scoreboard.Team;
 import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,6 +40,7 @@ public class blockPlace implements Listener {
         this.plugin = plugin;
 
     }
+    CurrencyManager manager = new CurrencyManager(plugin);
 
 
     @EventHandler
@@ -135,6 +137,8 @@ public class blockPlace implements Listener {
                 } else if (loc2.getBlock().getType() == Material.OBSIDIAN) {
                     blueobbymap.put(String.valueOf(player), ib + 1);
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.BLUE + "You've hit obsidian " + ib + "/5"));
+                    manager.addCurrencyToPlayer(player, 20);
+                    player.sendMessage(Utils.chat((ChatColor.GOLD + "Hit! You received 20$")));
 
                 } else if (loc2.getBlock().getType() == Material.OAK_PLANKS){
                     bluewoodmap.put(String.valueOf(player), ibw +1);
@@ -144,7 +148,8 @@ public class blockPlace implements Listener {
                     if(loc2.getBlock().getType() == Material.OBSIDIAN) {
                         loc2.getBlock().setType(Material.AIR);
                         blueblock.remove(loc2);
-                        blueobbymap.replace(String.valueOf(player), 1);
+                        manager.addCurrencyToPlayer(player, 50);
+                        player.sendMessage(Utils.chat((ChatColor.GOLD + "You received 50$")));
                     }
                 }
                 if (ibw == 2) {
