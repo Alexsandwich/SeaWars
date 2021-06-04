@@ -2,11 +2,12 @@ package com.seawars.events;
 
 import com.seawars.Seawars;
 import com.seawars.commands.setRegion;
+import com.seawars.util.RainbowText;
 import com.seawars.util.teamSystem;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -52,6 +53,9 @@ public class onJoin implements Listener {
         }
     }
 
+    public static BossBar bossBar;
+
+
     //TODO Fix Countdown not restarting!
     public static void countdown(Player player) {
             Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Game starting in " + count + " seconds..");
@@ -70,8 +74,17 @@ public class onJoin implements Listener {
                         gameStart(player);
                         cancel(); // Cancels the timer
                     } else {
-                        count--;
+                        RainbowText text = new RainbowText("Teleporting players in ");
+                        RainbowText text2 = new RainbowText(count + " seconds..");
+
+                        for(Player player : Bukkit.getOnlinePlayers()) {
+                            player.sendTitle(text.getText(), text2.getText(), 1, 20, 1);
+                            text.moveRainbow();
+                            player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 2.0F, 1.0F);
+                        }
                         Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Teleporting players in " + count + " seconds..");
+                        count--;
+
                     }
                 }
             }.runTaskTimer(Bukkit.getServer().getPluginManager().getPlugin("Seawars"), 20L, 20L);
@@ -92,6 +105,7 @@ public class onJoin implements Listener {
             }
         }
 
+
     public static void gameStart(Player player) {
         Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Water Rises in " + gameCount + " seconds..");
         new BukkitRunnable() {
@@ -106,13 +120,27 @@ public class onJoin implements Listener {
                 } else {
                     gameCount--;
                     if (gameCount <= 10) {
+                        RainbowText text3 = new RainbowText("Water Rising in ");
+                        RainbowText text4 = new RainbowText(gameCount + " seconds..");
+
+                        for(Player player : Bukkit.getOnlinePlayers()) {
+                            player.sendTitle(text3.getText(), text4.getText(), 1, 20, 1);
+                            text3.moveRainbow();
+                            player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 2.0F, 1.0F);
+                        }
                         Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Water Rising in " + gameCount + " seconds..");
+                    }
+                    if(gameCount == 1) {
+                        for (Player player : Bukkit.getOnlinePlayers()) {
+                            player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_DEATH, 2.0F, 1.0F);
+                        }
                     }
                 }
             }
         }.runTaskTimer(Bukkit.getServer().getPluginManager().getPlugin("Seawars"), 20L, 20L);
     }
 
+    //TODO remove and add block to team specific arrays
     public static void blockMove(Player player) {
         Location location1 = (Location) plugin.getConfig().get("region1");
         Location location2 = (Location) plugin.getConfig().get("region2");
@@ -135,6 +163,9 @@ public class onJoin implements Listener {
             int zb = location.getBlockZ();
             new Location(player.getWorld(), xb, y + 1, zb).getBlock().setType(location.getBlock().getType());
             location.getBlock().setType(Material.AIR);
+            if(location.getBlock().getType()==Material.AIR) {
+                blockPlace.blueblock.remove(location.getBlock().getType());
+            }
         }
 
         for (Location location : blockPlace.greenblockloc) {
