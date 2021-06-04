@@ -49,7 +49,7 @@ public class Seawars extends JavaPlugin {
         this.getCommand("restartCount").setExecutor(new restartCount());
         this.getCommand("currency").setExecutor(new CurrencyCommand(this));
         this.getCommand("give").setExecutor(new giveCommand(this));
-        this.getCommand("test").setExecutor(new moveBlock());
+        this.getCommand("test").setExecutor(new moveBlock(this));
 
         /**
          *     Registering all events/listeners

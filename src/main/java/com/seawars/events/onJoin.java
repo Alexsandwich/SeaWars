@@ -5,6 +5,8 @@ import com.seawars.commands.setRegion;
 import com.seawars.util.teamSystem;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -98,6 +100,7 @@ public class onJoin implements Listener {
                 if (gameCount == 0) {
                     // Start game method
                     Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Water has risen! Game on!");
+                    blockMove(player);
                     setRegion.startGame(player);
                     cancel(); // Cancels the timer
                 } else {
@@ -108,5 +111,43 @@ public class onJoin implements Listener {
                 }
             }
         }.runTaskTimer(Bukkit.getServer().getPluginManager().getPlugin("Seawars"), 20L, 20L);
+    }
+
+    public static void blockMove(Player player) {
+        Location location1 = (Location) plugin.getConfig().get("region1");
+        Location location2 = (Location) plugin.getConfig().get("region2");
+
+        int y = (location1.getBlockY() < location2.getBlockY() ? location2.getBlockY() : location1.getBlockY());
+
+        for (Location location : blockPlace.redblockloc) {
+            int x = location.getBlockX();
+            int z = location.getBlockZ();
+            new Location(player.getWorld(), x, y + 1, z).getBlock().setType(location.getBlock().getType());
+            location.getBlock().setType(Material.AIR);
+            if(location.getBlock().getType()==Material.AIR) {
+                blockPlace.redblock.remove(location.getBlock().getType());
+            }
+
+        }
+
+        for (Location location : blockPlace.blueblockloc) {
+            int xb = location.getBlockX();
+            int zb = location.getBlockZ();
+            new Location(player.getWorld(), xb, y + 1, zb).getBlock().setType(location.getBlock().getType());
+            location.getBlock().setType(Material.AIR);
+        }
+
+        for (Location location : blockPlace.greenblockloc) {
+            int xg = location.getBlockX();
+            int zg = location.getBlockZ();
+            new Location(player.getWorld(), xg, y + 1, zg).getBlock().setType(location.getBlock().getType());
+            location.getBlock().setType(Material.AIR);
+        }
+        for (Location location : blockPlace.yellowblockloc) {
+            int xy = location.getBlockX();
+            int zy = location.getBlockZ();
+            new Location(player.getWorld(), xy, y + 1, zy).getBlock().setType(location.getBlock().getType());
+            location.getBlock().setType(Material.AIR);
+        }
     }
 }
