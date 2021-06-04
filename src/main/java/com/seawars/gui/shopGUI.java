@@ -27,7 +27,7 @@ public class shopGUI implements Listener {
     }
 
     public static void initialize() {
-        inventory_name = Utils.chat("&2&4 GUI");
+        inventory_name = Utils.chat("Building Blocks and Weapons");
         inv = Bukkit.createInventory(null, inv_rows);
 
     }
@@ -36,12 +36,12 @@ public class shopGUI implements Listener {
         Inventory toReturn = Bukkit.createInventory(null, inv_rows, inventory_name);
 
         //  Create item here
-        Utils.createItemByte(inv, "wood", 0, 4, 1, "Oak Planks", "Basic Boat Material");
-        Utils.createItemByte(inv, "wood", 17, 4 ,2, "Oak Logs", "Untreated Cheap Wood");
-        Utils.createItemByte(inv, "wool", 35, 4 ,3, "Wool", "Basic Wool");
-        Utils.createItemByte(inv, "rock", 42, 2 ,4, "Iron Blocks", "Very Durable Material");
-        Utils.createItem(inv,"rock_sword",1,18,"Stone Sword" , "Cheap but effective");
-        Utils.createItem(inv,"iron_sword",1,19,"Iron Sword" , "Kill your enemies with your trusty sword");
+        Utils.createItemByte(inv, "wood", 0, 4, 1, "Oak Planks", "Basic Boat Material","Cost: 500$");
+        Utils.createItemByte(inv, "log", 0x0, 4 ,2, "Oak Logs", "Untreated Cheap Wood","Cost: 300$");
+        Utils.createItemByte(inv, "wool", 0x0, 4 ,3, "Wool", "Basic Wool", "Cost: 100$");
+        Utils.createItem(inv, "iron_block", 2, 4 ,"Iron Blocks","Very Durable Material", "Cost: 500$");
+        Utils.createItem(inv,"stone_sword",1,19,"Stone Sword", "Cheap but effective", "Cost 100$");
+        Utils.createItem(inv,"iron_sword",1,20,"Iron Sword" , "Kill your enemies with your trusty sword", "Cost 200$");
 
 
         Utils.createItem(inv, "blaze_Rod", 1, 36, ChatColor.RED + "Next Page");
@@ -93,7 +93,7 @@ public class shopGUI implements Listener {
             }
         }
 
-        if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Iron Block"))) {
+        if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat("Iron Blocks"))) {
             if (manager.getPlayerCurrency(p) >= 500) {
                 ItemStack ironblock = new ItemStack(Material.IRON_BLOCK, 2);
                 p.getInventory().addItem(ironblock);
