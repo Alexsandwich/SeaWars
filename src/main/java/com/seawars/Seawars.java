@@ -60,6 +60,7 @@ public class Seawars extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new teamSystem(this),this);
         Bukkit.getPluginManager().registerEvents(new blockPlace(this), this);
         Bukkit.getPluginManager().registerEvents(new inventoryEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new deathEvent(), this);
 
         //Setting up config
         this.getConfig().options().copyDefaults(true);

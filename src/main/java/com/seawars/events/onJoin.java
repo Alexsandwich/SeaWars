@@ -2,6 +2,7 @@ package com.seawars.events;
 
 import com.seawars.Seawars;
 import com.seawars.commands.setRegion;
+import com.seawars.gui.teamGUI;
 import com.seawars.util.RainbowText;
 import com.seawars.util.teamSystem;
 import org.bukkit.*;
@@ -33,12 +34,13 @@ public class onJoin implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        player.openInventory(teamGUI.GUI(player));
         player.sendMessage(prefix + ChatColor.RED + "Waiting for players!");
 
-        blockPlace.redobbymap.put(String.valueOf(player), 1);
-        blockPlace.greenobbymap.put(String.valueOf(player), 1);
-        blockPlace.yellowobbymap.put(String.valueOf(player), 1);
-        blockPlace.blueobbymap.put(String.valueOf(player), 1);
+        blockPlace.redironmap.put(String.valueOf(player), 1);
+        blockPlace.greenironmap.put(String.valueOf(player), 1);
+        blockPlace.yellowironmap.put(String.valueOf(player), 1);
+        blockPlace.blueironmap.put(String.valueOf(player), 1);
 
         blockPlace.redwoodmap.put(String.valueOf(player), 1);
         blockPlace.bluewoodmap.put(String.valueOf(player), 1);
@@ -111,6 +113,9 @@ public class onJoin implements Listener {
                     Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Water has risen! Game on!");
                     blockMove(player);
                     setRegion.startGame(player);
+                    for(Player player : Bukkit.getOnlinePlayers()) {
+                        teleport(player);
+                    }
                     cancel();
                 } else {
                     gameCount--;
@@ -127,7 +132,7 @@ public class onJoin implements Listener {
                     }
                     if(gameCount == 1) {
                         for (Player player : Bukkit.getOnlinePlayers()) {
-                            player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_DEATH, 2.0F, 1.0F);
+                            player.playSound(player.getLocation(), Sound.ENTITY_WITCH_CELEBRATE, 2.0F, 1.0F);
                         }
                     }
                 }
@@ -146,11 +151,17 @@ public class onJoin implements Listener {
             int x = location.getBlockX();
             int z = location.getBlockZ();
             new Location(player.getWorld(), x, y + 1, z).getBlock().setType(location.getBlock().getType());
-            location.getBlock().setType(Material.AIR);
+            player.sendMessage(String.valueOf(location.getBlock().getType()));
             if(location.getBlock().getType()==Material.AIR) {
                 blockPlace.redblock.remove(location.getBlock().getType());
             }
-
+            if(location.getBlock().getType()==Material.WATER) {
+                blockPlace.redblock.remove(location.getBlock().getType());
+            }
+            if(location.getBlock().getType()== Material.IRON_BLOCK) {
+                blockPlace.redblock.add(location.getBlock());
+            }
+            location.getBlock().setType(Material.AIR);
         }
 
         for (Location location : blockPlace.blueblockloc) {

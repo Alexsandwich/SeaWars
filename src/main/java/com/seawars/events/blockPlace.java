@@ -64,10 +64,10 @@ public class blockPlace implements Listener {
     }
 
 
-    public static HashMap<String, Integer> redobbymap = new HashMap<String, Integer>();
-    public static HashMap<String, Integer> greenobbymap = new HashMap<String, Integer>();
-    public static HashMap<String, Integer> blueobbymap = new HashMap<String, Integer>();
-    public static HashMap<String, Integer> yellowobbymap = new HashMap<String, Integer>();
+    public static HashMap<String, Integer> redironmap = new HashMap<String, Integer>();
+    public static HashMap<String, Integer> greenironmap = new HashMap<String, Integer>();
+    public static HashMap<String, Integer> blueironmap = new HashMap<String, Integer>();
+    public static HashMap<String, Integer> yellowironmap = new HashMap<String, Integer>();
 
     public static HashMap<String, Integer> redwoodmap = new HashMap<String, Integer>();
     public static HashMap<String, Integer> greenwoodmap = new HashMap<String, Integer>();
@@ -86,32 +86,28 @@ public class blockPlace implements Listener {
             Location loc2 = new Location(loc.getWorld(), loc.getX() + vec.getX(), loc.getY() + vec.getY(), loc.getZ() + vec.getZ());
             event.getEntity().remove();
 
-            int ir = redobbymap.get(String.valueOf(player));
-            int ig = greenobbymap.get(String.valueOf(player));
-            int ib = blueobbymap.get(String.valueOf(player));
-            int iy = yellowobbymap.get(String.valueOf(player));
+            int ir = redironmap.get(String.valueOf(player));
+            int ig = greenironmap.get(String.valueOf(player));
+            int ib = blueironmap.get(String.valueOf(player));
+            int iy = yellowironmap.get(String.valueOf(player));
 
             int irw = redwoodmap.get(String.valueOf(player));
             int igw = greenwoodmap.get(String.valueOf(player));
             int ibw = bluewoodmap.get(String.valueOf(player));
             int iyw = yellowwoodmap.get(String.valueOf(player));
 
-            //if(redblock.size() <= 5) {
-            //if(teamSystem.red.hasPlayer(player)) {
-            //player.setGameMode(GameMode.SPECTATOR);
-            //}
 
             if (redblock.contains(loc2.getBlock())) {
                 if (teamSystem.red.hasPlayer(player)) {
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You can not damage your own boat"));
                 } else if (loc2.getBlock().getType() == Material.IRON_BLOCK) {
-                    redobbymap.put(String.valueOf(player), ir + 1);
+                    redironmap.put(String.valueOf(player), ir + 1);
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You've hit Iron Block " + ir + "/5"));
                     manager.addCurrencyToPlayer(player, 20);
                     player.sendMessage(Utils.chat((ChatColor.GOLD + "Hit! You received 20$")));
 
-                } else if (loc2.getBlock().getType() == Material.OAK_LOG){
-                    redwoodmap.put(String.valueOf(player), irw +1);
+                } else if (loc2.getBlock().getType() == Material.OAK_LOG) {
+                    redwoodmap.put(String.valueOf(player), irw + 1);
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You've hit Oak Log " + irw + "/2"));
                     manager.addCurrencyToPlayer(player, 10);
                     player.sendMessage(Utils.chat((ChatColor.GOLD + "Hit! You received 10$")));
@@ -120,7 +116,7 @@ public class blockPlace implements Listener {
                     if(loc2.getBlock().getType() == Material.IRON_BLOCK) {
                         loc2.getBlock().setType(Material.AIR);
                         redblock.remove(loc2);
-                        redobbymap.replace(String.valueOf(player), 1);
+                        redironmap.replace(String.valueOf(player), 1);
                         manager.addCurrencyToPlayer(player, 50);
                         player.sendMessage(Utils.chat((ChatColor.GOLD + "You received 50$")));
                     }
@@ -142,7 +138,7 @@ public class blockPlace implements Listener {
                 if (teamSystem.blue.hasPlayer(player)) {
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You can not damage your own boat"));
                 } else if (loc2.getBlock().getType() == Material.IRON_BLOCK) {
-                    blueobbymap.put(String.valueOf(player), ib + 1);
+                    blueironmap.put(String.valueOf(player), ib + 1);
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.BLUE + "You've hit Iron Block " + ib + "/5"));
                     manager.addCurrencyToPlayer(player, 20);
                     player.sendMessage(Utils.chat((ChatColor.GOLD + "Hit! You received 20$")));
@@ -177,8 +173,8 @@ public class blockPlace implements Listener {
                 if (teamSystem.green.hasPlayer(player)) {
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You can not damage your own boat"));
                 } else if (loc2.getBlock().getType() == Material.IRON_BLOCK) {
-                    greenobbymap.put(String.valueOf(player), ig + 1);
-                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GREEN + "You've hit obsidian " + ig + "/5"));
+                    greenironmap.put(String.valueOf(player), ig + 1);
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GREEN + "You've hit Iron Block " + ig + "/5"));
                     manager.addCurrencyToPlayer(player, 20);
                     player.sendMessage(Utils.chat((ChatColor.GOLD + "Hit! You received 20$")));
 
@@ -192,7 +188,7 @@ public class blockPlace implements Listener {
                     if(loc2.getBlock().getType() == Material.IRON_BLOCK) {
                         loc2.getBlock().setType(Material.AIR);
                         greenblock.remove(loc2);
-                        greenobbymap.replace(String.valueOf(player), 1);
+                        greenironmap.replace(String.valueOf(player), 1);
                         manager.addCurrencyToPlayer(player, 50);
                         player.sendMessage(Utils.chat((ChatColor.GOLD + "You received 50$")));
                     }
@@ -212,7 +208,7 @@ public class blockPlace implements Listener {
                 if (teamSystem.yellow.hasPlayer(player)) {
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You can not damage your own boat"));
                 } else if (loc2.getBlock().getType() == Material.IRON_BLOCK) {
-                    yellowobbymap.put(String.valueOf(player), iy + 1);
+                    yellowironmap.put(String.valueOf(player), iy + 1);
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.YELLOW + "You've hit Iron Block " + iy + "/5"));
                     manager.addCurrencyToPlayer(player, 20);
                     player.sendMessage(Utils.chat((ChatColor.GOLD + "Hit! You received 20$")));
@@ -228,7 +224,7 @@ public class blockPlace implements Listener {
                     if(loc2.getBlock().getType() == Material.IRON_BLOCK) {
                         loc2.getBlock().setType(Material.AIR);
                         yellowblock.remove(loc2);
-                        yellowobbymap.replace(String.valueOf(player), 1);
+                        yellowironmap.replace(String.valueOf(player), 1);
                         manager.addCurrencyToPlayer(player, 50);
                         player.sendMessage(Utils.chat((ChatColor.GOLD + "You received 50$")));
                     }
@@ -241,6 +237,23 @@ public class blockPlace implements Listener {
                         manager.addCurrencyToPlayer(player, 20);
                         player.sendMessage(Utils.chat((ChatColor.GOLD + "Hit! You received 20$")));
                     }
+                }
+            }
+
+            //TODO Working on fixing team elimination
+            if(loc2.getBlock().getType() == Material.GOLD_BLOCK) {
+                player.sendMessage(ChatColor.RED + "You can not break a spawn point!");
+            }
+            if(redblock.contains(loc2.getBlock())) {
+             if(redblock.size() <= 5) {
+                for(Player playerO : Bukkit.getOnlinePlayers()) {
+                    if (teamSystem.red.hasPlayer(playerO)) {
+                        playerO.getWorld().spawnParticle(Particle.EXPLOSION_LARGE, playerO.getLocation(), 10);
+                        playerO.playSound(playerO.getLocation(), Sound.BLOCK_BELL_USE, 2.0F, 1.0F);
+                        playerO.sendMessage("Your Team has been eliminated");
+                        Bukkit.getScheduler().runTaskLater(plugin, () -> playerO.setGameMode(GameMode.SPECTATOR), 40);
+                    }
+                }
                 }
             }
         }

@@ -113,10 +113,4 @@ public class shopGUI implements Listener {
             p.openInventory(cosmeticGUI.GUI(p));
         }
     }
-
-
-
-
-
-
 }
