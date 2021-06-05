@@ -24,13 +24,8 @@ public class getBalance implements CommandExecutor {
             return true;
         } else {
             Player player = (Player) commandSender;
-
-            //This method bellow obtains the players money
             if (plugin.data.getConfig().contains("players." + player.getUniqueId().toString() + ".balance"))
-
-            //plugin.data.getConfig().set("players." + player.getUniqueId().toString() + ".balance", (balance + 100));
-            plugin.data.saveConfig();
-
+                plugin.data.saveConfig();
             player.sendMessage("Your Balance is: " + manager.getPlayerCurrency(player) + " $ ");
 
         }

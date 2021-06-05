@@ -13,8 +13,6 @@ public class CurrencyCommand implements CommandExecutor {
 
     public CurrencyCommand(Seawars plugin) {
         this.plugin = plugin;
-        //plugin.getCommand("coin").setExecutor(this);
-
     }
 
     @Override

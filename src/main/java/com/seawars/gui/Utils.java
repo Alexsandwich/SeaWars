@@ -34,7 +34,6 @@ public class Utils {
     }
 
     public static ItemStack createItemByte(Inventory inv, String materialString, int byteId, int amount, int invSlot, String displayName, String... lorestring) {
-
         ItemStack item;
         List<String> lore = new ArrayList<>();
         item = new ItemStack(Material.matchMaterial(materialString), amount , (short) byteId);
@@ -50,7 +49,4 @@ public class Utils {
         inv.setItem(invSlot - 1, item);
         return item;
     }
-
-
-
 }

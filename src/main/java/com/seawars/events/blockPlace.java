@@ -16,7 +16,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.scoreboard.Team;
 import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.HashMap;

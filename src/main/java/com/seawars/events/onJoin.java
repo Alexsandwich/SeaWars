@@ -5,8 +5,6 @@ import com.seawars.commands.setRegion;
 import com.seawars.util.RainbowText;
 import com.seawars.util.teamSystem;
 import org.bukkit.*;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -63,16 +61,14 @@ public class onJoin implements Listener {
                 @Override
                 public void run() {
                     if (count == 0) {
-                        // Start game method
                         Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Teleporting players to arena");
-                        //setRegion.startGame(player);
                         for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
 
                             String name = onlinePlayer.getName();
                             teleport(onlinePlayer);
                         }
                         gameStart(player);
-                        cancel(); // Cancels the timer
+                        cancel();
                     } else {
                         RainbowText text = new RainbowText("Teleporting players in ");
                         RainbowText text2 = new RainbowText(count + " seconds..");
@@ -112,11 +108,10 @@ public class onJoin implements Listener {
             @Override
             public void run() {
                 if (gameCount == 0) {
-                    // Start game method
                     Bukkit.broadcastMessage(prefix + ChatColor.YELLOW + "Water has risen! Game on!");
                     blockMove(player);
                     setRegion.startGame(player);
-                    cancel(); // Cancels the timer
+                    cancel();
                 } else {
                     gameCount--;
                     if (gameCount <= 10) {

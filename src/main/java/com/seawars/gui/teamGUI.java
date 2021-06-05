@@ -37,24 +37,13 @@ public class teamGUI implements Listener {
 
     public static Inventory GUI(Player p) {
         Inventory toReturn = Bukkit.createInventory(null, inv_rows, inventory_name);
-
-        //  Create item here            (inv, item, ammount, slot, displayname,)
         Utils.createItemByte(inv, "wool", 14, 1, 11, ChatColor.RED + "Red Team");
         Utils.createItemByte(inv, "wool", 4, 1, 13, ChatColor.YELLOW + "Yellow Team");
         Utils.createItemByte(inv, "wool", 5, 1, 15, ChatColor.GREEN + "Green Team");
         Utils.createItemByte(inv, "wool", 11, 1, 17, ChatColor.BLUE + "Blue Team");
-
-        //utils.createitemByte
-
         toReturn.setContents(inv.getContents());
         return toReturn;
-
-
     }
-
-
-
-
 
     public static void clicked(Player p, int slot, ItemStack clicked, Inventory inv) {
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat(ChatColor.RED + "Red Team"))) {
@@ -77,7 +66,6 @@ public class teamGUI implements Listener {
 
             p.getInventory().setChestplate(chestr);
         }
-
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat(ChatColor.BLUE + "Blue Team"))) {
             teamSystem.blue.addPlayer(p);
             p.sendMessage(prefix + ChatColor.BLUE + "You've joined the blue team!");
@@ -97,11 +85,7 @@ public class teamGUI implements Listener {
             chest.setItemMeta(ic);
 
             p.getInventory().setChestplate(chest);
-
-
-
         }
-
         if (clicked.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.chat(ChatColor.YELLOW + "Yellow Team"))) {
             teamSystem.yellow.addPlayer(p);
             p.sendMessage(prefix + ChatColor.YELLOW + "You've joined the yellow team!");
@@ -144,15 +128,7 @@ public class teamGUI implements Listener {
 
             p.getInventory().setChestplate(chestg);
         }
-
-
-
     }
-
-
-
-
-
 }
 
 

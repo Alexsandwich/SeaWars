@@ -1,6 +1,5 @@
 package com.seawars.commands;
 
-import com.seawars.util.RainbowText;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -41,13 +41,11 @@ public class teamSystem implements Listener {
         updateScoreboard();
     }
 
-
     @SuppressWarnings("deprecation")
     public void createScoreboard(Player player){
         Objective objective = board.registerNewObjective("teams!", "dummy");
         objective.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "--=Sea Wars=--");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-
 
         red.setPrefix(ChatColor.RED + "[RED] " + ChatColor.WHITE);
         blue.setPrefix(ChatColor.BLUE + "[BLUE] " + ChatColor.WHITE);
@@ -58,10 +56,10 @@ public class teamSystem implements Listener {
         red.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
         red.setCanSeeFriendlyInvisibles(false);
 
-        //onlinePlayers
+
         Score score = objective.getScore("Players:");
         score.setScore(Bukkit.getOnlinePlayers().size());
-        //money
+
         Score money = objective.getScore(ChatColor.GREEN + "Team: ");
         money.setScore(2);
 
