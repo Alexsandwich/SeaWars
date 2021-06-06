@@ -1,5 +1,6 @@
 package com.seawars.events;
 
+import com.seawars.Seawars;
 import com.seawars.commands.setRegion;
 import com.seawars.util.RainbowText;
 import org.bukkit.Bukkit;
@@ -15,7 +16,16 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class deathEvent implements Listener {
 
-    int deathCount = 10;
+    private Seawars plugin;
+
+    public deathEvent(Seawars plugin) {
+        this.plugin = plugin;
+
+    }
+
+    int duration = 10;
+
+    int deathCount = duration;
 
     //TODO Find better way to countdown for player death
     @EventHandler(priority = EventPriority.HIGHEST)

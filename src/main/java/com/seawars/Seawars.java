@@ -60,12 +60,13 @@ public class Seawars extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new teamSystem(this),this);
         Bukkit.getPluginManager().registerEvents(new blockPlace(this), this);
         Bukkit.getPluginManager().registerEvents(new inventoryEvent(), this);
-        Bukkit.getPluginManager().registerEvents(new deathEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new deathEvent(this), this);
 
         //Setting up config
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
         this.data = new DataManager(this);
+
 
         //Initializing GUI's
         shopGUI.initialize();
