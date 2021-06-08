@@ -23,17 +23,21 @@ public class deathEvent implements Listener {
 
     }
 
-    int duration = 10;
+
+    //TODO Fix obtaining int from config
+    int duration = plugin.getConfig().getInt("timer", 10);
 
     int deathCount = duration;
+
+    //int deathCount = duration;
 
     //TODO Find better way to countdown for player death
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerDeath(PlayerDeathEvent e){
         if (e.getEntity() instanceof Player){
             Player player = e.getEntity();
-            player.setGameMode(GameMode.SPECTATOR);
             player.spigot().respawn();
+            player.setGameMode(GameMode.SPECTATOR);
             new BukkitRunnable() {
                 @Override
                 public void run() {
@@ -41,6 +45,7 @@ public class deathEvent implements Listener {
                             onJoin.teleport(player);
                             player.setGameMode(GameMode.SURVIVAL);
                         cancel();
+
                     } else {
                         deathCount--;
                         if (deathCount <= 10) {
@@ -54,5 +59,12 @@ public class deathEvent implements Listener {
                 }
             }.runTaskTimer(Bukkit.getServer().getPluginManager().getPlugin("Seawars"), 20L, 20L);
         }
+    }
+
+    public void reloadConfig() {
+        plugin.saveDefaultConfig();
+        plugin.config = plugin.getConfig();
+        plugin.config.options().copyDefaults(true);
+        plugin.saveConfig();
     }
 }

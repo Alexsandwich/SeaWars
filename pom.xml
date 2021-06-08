@@ -22,6 +22,8 @@
     </repositories>
 
     <dependencies>
+
+        <!-- TODO change version to 1.17 when spigot releases update -->
         <!--This adds the Spigot API artifact to the build -->
         <dependency>
             <groupId>org.spigotmc</groupId>

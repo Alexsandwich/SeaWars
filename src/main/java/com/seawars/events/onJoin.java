@@ -187,4 +187,11 @@ public class onJoin implements Listener {
             location.getBlock().setType(Material.AIR);
         }
     }
+
+    public void reloadConfig() {
+        plugin.saveDefaultConfig();
+        plugin.config = plugin.getConfig();
+        plugin.config.options().copyDefaults(true);
+        plugin.saveConfig();
+    }
 }

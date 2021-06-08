@@ -62,6 +62,10 @@ public class Seawars extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new inventoryEvent(), this);
         Bukkit.getPluginManager().registerEvents(new deathEvent(this), this);
 
+        this.getConfig().set("timer", 10);
+        this.saveConfig();
+        reloadConfig();
+
         //Setting up config
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
