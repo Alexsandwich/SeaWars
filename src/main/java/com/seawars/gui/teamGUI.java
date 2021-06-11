@@ -37,10 +37,10 @@ public class teamGUI implements Listener {
 
     public static Inventory GUI(Player p) {
         Inventory toReturn = Bukkit.createInventory(null, inv_rows, inventory_name);
-        Utils.createItemByte(inv, "wool", 14, 1, 11, ChatColor.RED + "Red Team");
-        Utils.createItemByte(inv, "wool", 4, 1, 13, ChatColor.YELLOW + "Yellow Team");
-        Utils.createItemByte(inv, "wool", 5, 1, 15, ChatColor.GREEN + "Green Team");
-        Utils.createItemByte(inv, "wool", 11, 1, 17, ChatColor.BLUE + "Blue Team");
+        Utils.createItem(inv, Material.RED_WOOL, 1, 11, ChatColor.RED + "Red Team");
+        Utils.createItem(inv, Material.YELLOW_WOOL,  1, 13, ChatColor.YELLOW + "Yellow Team");
+        Utils.createItem(inv, Material.GREEN_WOOL,  1, 15, ChatColor.GREEN + "Green Team");
+        Utils.createItem(inv, Material.BLUE_WOOL,  1, 17, ChatColor.BLUE + "Blue Team");
         toReturn.setContents(inv.getContents());
         return toReturn;
     }

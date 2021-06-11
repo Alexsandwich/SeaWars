@@ -34,13 +34,13 @@ public class shopGUI implements Listener {
 
     public static Inventory GUI(Player p) {
         Inventory toReturn = Bukkit.createInventory(null, inv_rows, inventory_name);
-        Utils.createItemByte(inv, "wood", 0, 4, 1, "Oak Planks", "Basic Boat Material","Cost: 500$");
-        Utils.createItemByte(inv, "log", 0x0, 4 ,2, "Oak Logs", "Untreated Cheap Wood","Cost: 300$");
-        Utils.createItemByte(inv, "wool", 0x0, 4 ,3, "Wool", "Basic Wool", "Cost: 100$");
-        Utils.createItem(inv, "iron_block", 2, 4 ,"Iron Blocks","Very Durable Material", "Cost: 500$");
-        Utils.createItem(inv,"stone_sword",1,19,"Stone Sword", "Cheap but effective", "Cost 100$");
-        Utils.createItem(inv,"iron_sword",1,20,"Iron Sword" , "Kill your enemies with your trusty sword", "Cost 200$");
-        Utils.createItem(inv, "blaze_Rod", 1, 36, ChatColor.RED + "Next Page");
+        Utils.createItem(inv, Material.OAK_PLANKS,  4, 1, "Oak Planks", "Basic Boat Material","Cost: 500$");
+        Utils.createItem(inv, Material.OAK_LOG,  4 ,2, "Oak Logs", "Untreated Cheap Wood","Cost: 300$");
+        Utils.createItem(inv, Material.WHITE_WOOL,  4 ,3, "Wool", "Basic Wool", "Cost: 100$");
+        Utils.createItem(inv, Material.IRON_BLOCK, 2, 4 ,"Iron Blocks","Very Durable Material", "Cost: 500$");
+        Utils.createItem(inv,Material.STONE_SWORD,1,19,"Stone Sword", "Cheap but effective", "Cost 100$");
+        Utils.createItem(inv,Material.IRON_SWORD,1,20,"Iron Sword" , "Kill your enemies with your trusty sword", "Cost 200$");
+        Utils.createItem(inv, Material.BLAZE_ROD, 1, 36, ChatColor.RED + "Next Page");
         toReturn.setContents(inv.getContents());
         return toReturn;
     }

@@ -25,13 +25,15 @@ public class deathEvent implements Listener {
 
 
     //TODO Fix obtaining int from config
-    int duration = plugin.getConfig().getInt("timer", 10);
+    //int duration = plugin.getConfig().getInt("timer", 10);
 
-    int deathCount = duration;
+    //int deathCount = duration;
 
     //int deathCount = duration;
 
     //TODO Find better way to countdown for player death
+
+    /**
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerDeath(PlayerDeathEvent e){
         if (e.getEntity() instanceof Player){
@@ -67,4 +69,5 @@ public class deathEvent implements Listener {
         plugin.config.options().copyDefaults(true);
         plugin.saveConfig();
     }
+    **/
 }

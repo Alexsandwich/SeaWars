@@ -15,11 +15,11 @@ public class Utils {
         return ChatColor.translateAlternateColorCodes('&' , s);
 
     }
-    public static ItemStack createItem(Inventory inv, String materialString, int amount, int invSlot, String displayName, String... lorestring) {
+    public static ItemStack createItem(Inventory inv, Material material, int amount, int invSlot, String displayName, String... lorestring) {
 
         ItemStack item;
         List<String> lore = new ArrayList<>();
-        item = new ItemStack(Material.matchMaterial(materialString), amount);
+        item = new ItemStack(material, amount);
 
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(Utils.chat(displayName));
@@ -33,10 +33,10 @@ public class Utils {
         return item;
     }
 
-    public static ItemStack createItemByte(Inventory inv, String materialString, int byteId, int amount, int invSlot, String displayName, String... lorestring) {
+    public static ItemStack createItemByte(Inventory inv, Material material, int byteId, int amount, int invSlot, String displayName, String... lorestring) {
         ItemStack item;
         List<String> lore = new ArrayList<>();
-        item = new ItemStack(Material.matchMaterial(materialString), amount , (short) byteId);
+        item = new ItemStack(material, amount , (short) byteId);
 
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(Utils.chat(displayName));

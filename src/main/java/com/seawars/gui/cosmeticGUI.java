@@ -17,7 +17,6 @@ public class cosmeticGUI implements Listener {
     public static int inv_rows = 4 * 9;
 
 
-
     private static Seawars plugin;
 
     static String prefix = plugin.prefix;
@@ -35,8 +34,8 @@ public class cosmeticGUI implements Listener {
 
     public static Inventory GUI(Player p) {
         Inventory toReturn = Bukkit.createInventory(null, inv_rows, inventory_name);
-        Utils.createItem(inv, "leather_helmet", 1, 1, ChatColor.GREEN + "" + ChatColor.BOLD + "Turtle Hat", "Cost: $5000");
-        Utils.createItem(inv, "blaze_Rod", 1, 36, ChatColor.RED + "Next Page");
+        Utils.createItem(inv, Material.TURTLE_HELMET, 1, 1, ChatColor.GREEN + "" + ChatColor.BOLD + "Turtle Hat", "Cost: $5000");
+        Utils.createItem(inv, Material.BLAZE_ROD, 1, 36, ChatColor.RED + "Next Page");
         toReturn.setContents(inv.getContents());
         return toReturn;
     }
