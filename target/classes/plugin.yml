@@ -1,6 +1,7 @@
 main: com.seawars.Seawars
 name: Seawars
 version: 1.0
+api-version: 1.16
 commands:
   set:
     description: Command to set area
